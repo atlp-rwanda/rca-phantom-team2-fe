@@ -18,6 +18,7 @@ module.exports = {
     },
     port: 3000,
     historyApiFallback: true,
+    hot: true
   },
   module: {
     rules: [
@@ -32,11 +33,11 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
     ],
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx", ".css"],
   },
 };
