@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack serve --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
