@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { store } from "./store";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
+import "./styles/custom.css";
 
 function App() {
   return (
