@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "start": "webpack serve --mode development",
     "test": "jest",
-    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"\
   },
   "keywords": [],
   "author": "",
