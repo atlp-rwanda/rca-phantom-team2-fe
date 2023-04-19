@@ -1,3 +1,6 @@
+![Github actions](https://github.com/atlp-rwanda/rca-phantom-team2-fe/actions/workflows/nodejs.yml/badge.svg)
+
+
 # Phantom (frontend)
 
 Elevate the public transport experience
