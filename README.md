@@ -1,5 +1,6 @@
 ![Github actions](https://github.com/atlp-rwanda/rca-phantom-team2-fe/actions/workflows/nodejs.yml/badge.svg)
-[![Maintainability](https://api.codeclimate.com/v1/badges/eb341d3fc51e1a54ce98/maintainability)](https://codeclimate.com/github/atlp-rwanda/rca-phantom-team2-fe/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c4fb55e27bd9edfd4690/maintainability)](https://codeclimate.com/github/atlp-rwanda/rca-phantom-team2-fe/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c4fb55e27bd9edfd4690/test_coverage)](https://codeclimate.com/github/atlp-rwanda/rca-phantom-team2-fe/test_coverage)
 
 # Phantom (frontend)
 
