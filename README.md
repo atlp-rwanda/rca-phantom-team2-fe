@@ -1,5 +1,5 @@
 ![Github actions](https://github.com/atlp-rwanda/rca-phantom-team2-fe/actions/workflows/nodejs.yml/badge.svg)
-![Code climate](https://codeclimate.com/github/atlp-rwanda/rca-phantom-team2-fe/progress/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/eb341d3fc51e1a54ce98/maintainability)](https://codeclimate.com/github/atlp-rwanda/rca-phantom-team2-fe/maintainability)
 
 # Phantom (frontend)
 
