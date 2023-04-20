@@ -1,7 +1,7 @@
 ![Github actions](https://github.com/atlp-rwanda/rca-phantom-team2-fe/actions/workflows/nodejs.yml/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c4fb55e27bd9edfd4690/maintainability)](https://codeclimate.com/github/atlp-rwanda/rca-phantom-team2-fe/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c4fb55e27bd9edfd4690/test_coverage)](https://codeclimate.com/github/atlp-rwanda/rca-phantom-team2-fe/test_coverage)
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/51c458b4-2358-4091-b83d-d8526b471286/deploy-status)](https://app.netlify.com/sites/phantom-team2/deploys)
 # Phantom (frontend)
 
 Elevate the public transport experience
