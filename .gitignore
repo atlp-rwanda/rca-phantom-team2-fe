@@ -6,7 +6,6 @@
 #package manager
 yarn.lock
 npm-debug.log*
-package-lock.json
 yarn-error.log
 pnpm-debug.log
 pnpm-lock.yaml
