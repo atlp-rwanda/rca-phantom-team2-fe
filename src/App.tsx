@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import PageNotFound from "./pages/PageNotFound";
 import { Provider } from "react-redux";
-import { store } from "./store";
-import Counter from "./components/Counter";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Counter from "@/components/Counter";
+import Home from "@/pages/Home";
+import PageNotFound from "@/pages/PageNotFound";
+import { store } from "@/store";
 
 function App() {
   return (

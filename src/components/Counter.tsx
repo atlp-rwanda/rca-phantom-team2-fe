@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store";
-import { decrement, increment } from "../store/reducers/counter";
+import { RootState } from "@/store";
+import { decrement, increment } from "@/store/reducers/counter";
 import Navbar from "./Navbar";
 
 export default function Counter(){
