@@ -10,7 +10,7 @@ export default function Counter(){
     return (
         <div className="h-screen flex flex-col">
             <Navbar />
-            <div className="w-full h-full flex flex-col justify-center items-center rounded border bg-blue-100 p-4">
+            <div className="w-full h-full flex flex-col justify-center items-center rounded border p-4">
                 <h1 className="font-bold text-3xl mb-4">{count}</h1>
                 <div className="flex flex-row justify-center space-x-4 items-center mt-4">
                     <button className="p-4 bg-red-500 text-white rounded" onClick={()=> dispatch(decrement())}>DECREASE</button>

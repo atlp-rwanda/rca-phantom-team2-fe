@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/test" element={<Counter />} />
+          <Route path="/counter" element={<Counter />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
