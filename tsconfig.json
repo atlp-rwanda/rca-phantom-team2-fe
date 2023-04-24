@@ -1,12 +1,5 @@
 {
   "compilerOptions": {
-    "jsx": "react",
-    "allowJs": false,
-    "module": "es6",
-    "target": "es6",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
-  }
     "target": "ESNext",
     "baseUrl": ".",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
