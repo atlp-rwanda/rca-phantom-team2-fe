@@ -3,11 +3,19 @@
 /.pnp
 .pnp.js
 
+#package manager
+yarn.lock
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log
+pnpm-lock.yaml
+
 # testing
 /coverage
 
 # production
 /build
+/dist
 
 # Build and Release Folders
 bin-debug/

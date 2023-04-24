@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import underline from "../assets/underline.png";
 import busInside from "../assets/bus-inside.png";
 import shapes from "../assets/shapes.png";
@@ -7,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="lg:px-10 px-5 pb-3 pt-5 relative font-poppins h-screen overflow-hidden">
+    <div className="lg:px-10 px-5 pb-10 pt-5 relative font-poppins h-screen overflow-y-scroll overflow-x-hidden">
       <Navbar />
       <img src={shapes} className="absolute top-0 right-0 w-28 -z-10" />
       <div className="flex flex-wrap lg:mt-24 mt-20 w-full">
@@ -35,22 +34,22 @@ export default function Home() {
             <p className="mt-5">Your time is valuable</p>
           </div>
           <Link to="/Login">
-            <div className="mt-14 bg-dark-green py-2.5 w-32 text-white rounded-md text-xs text-center font-semibold cursor-pointer">
+            <div className="lg:mt-14 mt-8 bg-dark-green py-2.5 w-32 text-white rounded-md text-xs text-center font-semibold cursor-pointer">
               GET STARTED
             </div>
           </Link>
         </div>
-        <div className="w-1/2 relative hidden lg:flex h-auto">
-          <div className="w-3/4 border-2 border-gray-300 rounded-2xl lg:h-full"></div>
+        <div className="lg:w-1/2 w-full relative lg:flex md:h-auto h-56 flex justify-center items-center mt-14 lg:mt-0">
+          <div className="lg:w-3/4 w-3/5 border-2 border-gray-300 rounded-2xl h-full"></div>
           <img
             src={busInside}
             alt="busInside"
-            className="rounded-2xl absolute top-5 left-7 w-3/4 shadow-lg"
+            className="rounded-2xl absolute lg:top-5 top-4 lg:right-11 right-28 lg:w-3/4 w-3/5 shadow-lg"
             style={{ height: "86%" }}
           />
         </div>
       </div>
-      <div className="flex w-full md:flex-nowrap flex-wrap justify-between md:space-x-10 mt-14 absolute lg:bottom-8 bottom-10 left-0">
+      <div className="flex w-full md:flex-nowrap flex-wrap justify-between md:space-x-10 mt-14 ">
         <div className="flex flex-col items-center border-r border-r-gray-400 md:w-1/4 w-1/2 mt-8">
           <div className="text-lg font-bold text-dark-green">24/7</div>
           <div className="mt-2 text-xs font-medium">Hours per week</div>
