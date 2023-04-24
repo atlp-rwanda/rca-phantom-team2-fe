@@ -1,17 +1,22 @@
 {
-  "name": "rca-phantom-team2-fe",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "phantom",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack serve --mode development",
     "test": "jest",
-    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.10.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
@@ -22,6 +27,9 @@
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.34",
     "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "@vitejs/plugin-react": "^4.0.0-beta.0",
     "autoprefixer": "^10.4.14",
     "babel-core": "^6.26.3",
     "babel-loader": "^9.1.2",
@@ -34,12 +42,13 @@
     "postcss-cli": "^10.1.0",
     "postcss-loader": "^7.2.4",
     "style-loader": "^3.3.2",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "postcss": "^8.4.23",
     "tailwindcss": "^3.3.1",
-    "ts-loader": "^9.4.2",
-    "typescript": "^5.0.4",
-    "webpack": "^5.78.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.13.2"
+    "typescript": "^5.0.2",
+    "vite": "^4.3.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -54,5 +63,7 @@
     "react-router-dom": "^6.10.0",
     "react-test-renderer": "^18.2.0",
     "redux": "^4.2.1"
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
