@@ -4,6 +4,7 @@ import Counter from "@/components/Counter";
 import Home from "@/pages/Home";
 import PageNotFound from "@/pages/PageNotFound";
 import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import { store } from "@/store";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/counter" element={<Counter />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
