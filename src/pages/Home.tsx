@@ -49,7 +49,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex w-full md:flex-nowrap flex-wrap justify-between md:space-x-10 mt-14 ">
+      <div className="flex w-full md:flex-nowrap flex-wrap justify-between md:space-x-10 mt-20">
         <div className="flex flex-col items-center border-r border-r-gray-400 md:w-1/4 w-1/2 mt-8">
           <div className="text-lg font-bold text-dark-green">24/7</div>
           <div className="mt-2 text-xs font-medium">Hours per week</div>
