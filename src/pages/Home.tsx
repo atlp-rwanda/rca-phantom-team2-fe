@@ -33,7 +33,7 @@ export default function Home() {
             </p>
             <p className="mt-5">Your time is valuable</p>
           </div>
-          <Link to="/Login">
+          <Link to="/updateprofile">
             <div className="lg:mt-14 mt-8 bg-dark-green py-2.5 w-32 text-white rounded-md text-xs text-center font-semibold cursor-pointer">
               GET STARTED
             </div>
