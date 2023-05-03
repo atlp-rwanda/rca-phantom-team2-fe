@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 
 type ButtonProps = {
   type: "button" | "submit" | "reset" | undefined;
+  disabled?: boolean
   children: ReactNode;
 };
 
