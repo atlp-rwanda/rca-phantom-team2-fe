@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 
-const calculateRange = (data:any, rowsPerPage:number) => {
+const calculateRange = (data: any, rowsPerPage: number) => {
   const range = [];
   const num = Math.ceil(data.length / rowsPerPage);
   for (let i = 1; i <= num; i++) {
@@ -9,13 +11,13 @@ const calculateRange = (data:any, rowsPerPage:number) => {
   return range;
 };
 
-const sliceData = (data:any, page:number, rowsPerPage:number) => {
+const sliceData = (data: any, page: number, rowsPerPage: number) => {
   return data.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 };
 
-const useTable = (data:any, page:number, rowsPerPage:number) => {
+const useTable = (data: any, page: number, rowsPerPage: number) => {
   const [tableRange, setTableRange] = useState<any | null>(null);
-  const [slice, setSlice] = useState<any | null>(null)
+  const [slice, setSlice] = useState<any | null>(null);
 
   useEffect(() => {
     const range = calculateRange(data, rowsPerPage);
