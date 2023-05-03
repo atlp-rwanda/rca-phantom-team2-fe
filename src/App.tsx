@@ -1,6 +1,5 @@
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Counter from "@/components/Counter";
 import Home from "@/pages/Home";
 import RegisterDriver from "./pages/RegisterDriver";
 import PageNotFound from "@/pages/PageNotFound";
@@ -12,7 +11,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/counter" element={<Counter />} />
           <Route path="/registerDriver" element={<RegisterDriver />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
