@@ -11,7 +11,7 @@ const TableFooter = ({ range, setPage, page, slice }: any) => {
   return (
     <div className="bg-slate-50 py-3 w-full font-medium text-left text-gray-300 flex items-center justify-center text-xs border-t-0 border border-b-slate-200 ">
       {range &&
-        range.map((el: any, index: number) => (
+        range.map((el: number, index: number) => (
           <button
             key={index}
             className={`rounded cursor-pointer mx-1.5 ${
