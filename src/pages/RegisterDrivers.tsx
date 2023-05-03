@@ -1,4 +1,3 @@
-
 import Searchbar from "../components/Searchbar";
 import * as yup from "yup";
 import axios from "axios";
@@ -73,7 +72,7 @@ export default function Updateprofile() {
 
             <div className="mb-3 col-6">
               <label htmlFor="first_name" className="form-label">
-                First name
+                Driver Id
               </label><br />
               <input
                 type="text"
