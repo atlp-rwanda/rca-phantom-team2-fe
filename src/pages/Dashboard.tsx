@@ -24,7 +24,7 @@ export default function Dashboard() {
       <div
         id="overlay"
         onClick={toggleSidebar}
-        className="bg-white bg-opacity-60 fixed w-full h-full"
+        className="bg-white bg-opacity-60 fixed w-full h-full hidden"
       ></div>
     </div>
   );

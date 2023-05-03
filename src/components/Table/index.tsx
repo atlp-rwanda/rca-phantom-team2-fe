@@ -3,6 +3,7 @@ import useTable from "../../hooks/useTable";
 import TableFooter from "./Footer";
 import edit from "../../assets/Icons/edit.svg";
 import delete_i from "../../assets/Icons/delete.svg";
+import { Bus } from "../Dashboard/Buses";
 
 const Table = ({ columns, data, rowsPerPage, handleAction }: any) => {
   const [page, setPage] = useState(1);
@@ -24,14 +25,14 @@ const Table = ({ columns, data, rowsPerPage, handleAction }: any) => {
         </thead>
         <tbody className="text-gunmetal font-medium">
           {slice &&
-            slice.map((el: any, index: number) => (
+            slice.map((el: Bus, index: number) => (
               <tr className="cursor-auto even:bg-slate-50 text-sm" key={index}>
                 {Object.values(el)
                   .slice(1, Object.values(el).length)
-                  .map((tada: any, i: number) => {
+                  .map((_value: any, i: number) => {
                     return (
                       <td className="p-3" key={`${el.id}+${i}`}>
-                        {tada}
+                        {_value}
                       </td>
                     );
                   })}
