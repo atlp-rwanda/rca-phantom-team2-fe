@@ -4,6 +4,7 @@ import Counter from "@/components/Counter";
 import Home from "@/pages/Home";
 import PageNotFound from "@/pages/PageNotFound";
 import { store } from "@/store";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/counter" element={<Counter />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </Provider>
