@@ -24,7 +24,7 @@ export default function RegisterDriver() {
     role: string;
   }) => {
     try {
-      const response = await axios.put(
+      const response = await axios.post(
         "https://rca-phantom-team2-bn.onrender.com/users/register",
         data
       );
