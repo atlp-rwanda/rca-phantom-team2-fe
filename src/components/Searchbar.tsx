@@ -2,7 +2,6 @@ import { useState } from "react";
 import logo from "../assets/logo.png";
 import profile from "../assets/profile.png";
 import notification from "../assets/notification.png";
-import note from "../assets/new-notification.png";
 import settings from "../assets/settings.png";
 
 export default function Searchbar() {
@@ -13,13 +12,11 @@ export default function Searchbar() {
         <img src={logo} alt="Logo" className="h-12" />
         <div className="text-gray-500 ml-5">-Your Bus, Your Seat</div>
       </div>
-      <div>
-        
-      </div>
+      <div></div>
       <div className="flex items-center space-x-5">
-      <img src={settings} alt="Logo"  />
-      <img src={notification} alt="Logo" />
-      <img src={profile} alt="Logo" className="h-6 " />
+        <img src={settings} alt="Logo" />
+        <img src={notification} alt="Logo" />
+        <img src={profile} alt="Logo" className="h-6 " />
       </div>
       <div className="block lg:hidden">
         <div onClick={() => setIsOpen(!isOpen)}>
@@ -39,7 +36,6 @@ export default function Searchbar() {
           </svg>
         </div>
       </div>
-      
     </nav>
   );
 }
