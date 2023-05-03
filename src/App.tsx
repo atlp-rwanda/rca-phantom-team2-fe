@@ -1,9 +1,9 @@
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "@/pages/Home";
+import Home from "./pages/Home";
 import RegisterDriver from "./pages/RegisterDriver";
-import PageNotFound from "@/pages/PageNotFound";
-import { store } from "@/store";
+import PageNotFound from "./pages/PageNotFound";
+import { store } from "./store";
 
 function App() {
   return (
