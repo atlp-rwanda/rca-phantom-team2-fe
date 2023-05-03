@@ -30,7 +30,7 @@ export default function RegisterDriver() {
   };
 
   return (
-    <div className="lg:px-10 px-5 pb-10 pt-5 relative font-poppins h-screen overflow-y-scroll overflow-x-hidden">
+    <div className="lg:px-10 px-5 pb-10 pt-5 relative font-poppins h-screen overflow-y-scroll bg-gray-100 overflow-x-hidden">
       <div className="flex flex-wrap lg:mt-24 mt-20 w-full">
         <div className="lg:w-1/2 flex flex-col lg:justify-normal justify-center items-center lg:items-start"></div>
         <div className=" w-full relative lg:flex md:h-auto h-56 flex justify-center items-center mt-14 lg:mt-0">
@@ -54,7 +54,14 @@ export default function RegisterDriver() {
               isSubmitting,
               /* and other goodies */
             }) => (
-              <form className="row" onSubmit={handleSubmit}>
+              <form
+                className="row bg-white p-16 rounded-md"
+                onSubmit={handleSubmit}
+              >
+                <div className=" text-center -mt-4 mb-8 text-lg text-dark-green ">
+                  {" "}
+                  Register Drivers & Operators
+                </div>
                 <div className="mb-3 col-6">
                   <label htmlFor="first_name" className="form-label">
                     First name
@@ -64,7 +71,7 @@ export default function RegisterDriver() {
                     type="text"
                     name="first_name"
                     id="first_name"
-                    className=" p-2 w-75 rounded border h-12 mb-2 border-2 border-gray-300"
+                    className=" p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.first_name}
@@ -85,7 +92,7 @@ export default function RegisterDriver() {
                     type="text"
                     name="last_name"
                     id="last_name"
-                    className="p-2 w-75 rounded border h-12 mb-2 border-2 border-gray-300"
+                    className="p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.last_name}
@@ -104,7 +111,7 @@ export default function RegisterDriver() {
                     type="email"
                     name="email"
                     id="exampleInputEmail1"
-                    className="mt-2 p-2 w-75 rounded border h-12 mb-2 border-2 border-gray-300"
+                    className="mt-2 p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.email}
@@ -123,7 +130,7 @@ export default function RegisterDriver() {
                     type="text"
                     name="text"
                     id="exampleInputRole"
-                    className="mt-2 p-2 w-75 rounded border h-12 mb-2 border-2 border-gray-300"
+                    className="mt-2 p-2 w-full rounded border h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.role}
@@ -136,7 +143,7 @@ export default function RegisterDriver() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="lg:mt-14 mt-8 bg-dark-green py-2.5 w-32 text-white rounded-md text-xs text-center font-semibold cursor-pointer"
+                  className="mt-14 -mt-10 bg-dark-green py-2.5 w-32 text-white rounded-md text-xs text-center font-semibold cursor-pointer"
                 >
                   Register
                 </button>
