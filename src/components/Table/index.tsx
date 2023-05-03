@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import useTable from "../../hooks/useTable";
 import TableFooter from "./Footer";
@@ -15,7 +16,7 @@ const Table = ({ columns, data, rowsPerPage, handleAction }: any) => {
         <thead className="bg-transparent border">
           <tr className="text-gray-400 text-sm font-semibold text-left">
             {columns &&
-              columns.map((r: any, index: number) => (
+              columns.map((r: string, index: number) => (
                 <th className="p-3" key={index}>
                   {r}
                 </th>
