@@ -1,18 +1,21 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import PageNotFound from "./components/PageNotFound";
-import RegisterDriver from "./components/RegisterDrivers";
+import { Provider } from "react-redux";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Counter from "@/components/Counter";
+import Home from "@/pages/Home";
+import PageNotFound from "@/pages/PageNotFound";
+import { store } from "@/store";
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<RegisterDriver />} />
-        <Route path="*" element={<PageNotFound />} />
-        <Route path="/regdriver" element={<Home />} />
-      </Routes>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/counter" element={<Counter />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
