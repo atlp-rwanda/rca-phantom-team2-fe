@@ -17,7 +17,12 @@ const RegisterDriverValidationSchema = yup.object().shape({
 export default function RegisterDriver() {
   // const navigate = useNavigate();
 
-  const handleSubmitRegister = async (data) => {
+  const handleSubmitRegister = async (data: {
+    first_name: string;
+    last_name: string;
+    email: string;
+    role: string;
+  }) => {
     try {
       const response = await axios.put(
         "https://rca-phantom-team2-bn.onrender.com/users/register",
