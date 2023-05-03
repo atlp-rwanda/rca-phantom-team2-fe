@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Counter from "@/components/Counter";
 import Home from "@/pages/Home";
-import Updateprofile from "./pages/UpdateProfile";
+import Updateprofile from "./pages/RegisterDriver";
 import PageNotFound from "@/pages/PageNotFound";
 import { store } from "@/store";
 
