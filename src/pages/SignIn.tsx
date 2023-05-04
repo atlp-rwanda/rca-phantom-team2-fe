@@ -95,7 +95,7 @@ for a bus!</h1>
               className='focus:shadow-outline w-full  appearance-none rounded border border-gray-300 py-4 px-6 leading-tight text-gray-700 focus:outline-none'
               placeholder='Please Enter Your Email'
             />
-            <ErrorMessage name='email'>{(msg) => <div className='my-1 text-red-500 text-xs'>{msg}</div>}</ErrorMessage>
+            <ErrorMessage name='email'>{(msg) => <div className='my-1 text-red-500 text-sm'>{msg}</div>}</ErrorMessage>
 
             <label htmlFor='password' className='mb-2 mt-6 font-base text-green-900'>
               Password
@@ -106,26 +106,26 @@ for a bus!</h1>
               className='focus:shadow-outline w-full appearance-none rounded border border-gray-300 py-4 px-6 leading-tight text-gray-700 focus:outline-none'
               placeholder='Please Enter Your Password'
             />
-            <ErrorMessage name='password'>{(msg) => <div className='my-1 text-red-500 text-xs'>{msg}</div>}</ErrorMessage>
+            <ErrorMessage name='password'>{(msg) => <div className='my-1 text-red-500 text-sm'>{msg}</div>}</ErrorMessage>
             <div>{
               (errortext && <div className='my-1 text-red-500 text-xs'>{errortext}</div>)
               }</div>
             <button
               type='submit'
-              className='bg-primary flex items-center justify-center focus:shadow-outline mt-4 rounded py-4 px-4 font-bold text-black fill-green-900'
+              className='flex items-center justify-center focus:shadow-outline mt-10 font-bold bg-bgprimary text-white py-4 px-4 rounded'
             >
               {
                 (loading?  <Oval
                   height={20}
                   width={20}
-                  color="#333"
+                  color="#fff"
                   wrapperStyle={{}}
                   wrapperClass=""
                   visible={true}
                   ariaLabel='oval-loading'
-                  secondaryColor="#333"
-                  strokeWidth={2}
-                  strokeWidthSecondary={2}
+                  secondaryColor="#fff"
+                  strokeWidth={5}
+                  strokeWidthSecondary={5}
                 
                 />: "Sign In")
               }
