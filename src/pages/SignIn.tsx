@@ -18,10 +18,10 @@ const  dispatch: any = useDispatch();
 
     <div className='flex h-screen'>
 
-<div className='w-1/2'>
+<div className='hidden sm:block w-1/2'>
   <div className='bg-bgsecondary  w-full h-full  flex justify-center items-center '>
 
-    <div className="w-full h-full main--login-bg p-12">
+    <div className="w-full h-full main--login-bg p-16 md:p-8">
   {/* inner bg */}
 
   <div className="backdrop-blur-md bg-white/30 h-full border-4 border-white w-full rounded-xl relative" >
@@ -29,23 +29,23 @@ const  dispatch: any = useDispatch();
  
  <div className="flex ml-10 mt-10" >
   {/* rome-ignore lint/a11y/useAltText: <explanation> */} 
-   <img src="/assets/Logo.png" className="w-24 h-24 " />
- <h2 className='text-gray-400 font-semibold text-lg px-10 py-10' > - Your Bus, Your Seat</h2>
+   <img src="/assets/Logo.png" className="w-24 h-24 md:w-20 md:h-20" />
+ <h2 className='text-gray-400 font-semibold text-lg px-10 py-10 md:py-5' > - Your Bus, Your Seat</h2>
  
  </div>
 {/* rome-ignore lint/a11y/useAltText: <explanation> */}
 <img src="/assets/quotes.png" className="w-6 h-6 ml-10 mt-12" />
 
 <div className="">
-<h1 className='ml-10 px-10 font-bold text-3xl text-bgprimary'>I no longer miss
+<h1 className='ml-5 mb-5 px-20 font-bold text-3xl text-bgprimary '>I no longer miss
 my schedules because
 of waiting hours
 for a bus!</h1>
-<div className="flex justify-end">
-<h1 className='ml-60 px-10 font-semibold text-3xl text-bgyellow'>-John</h1>
+<div className="flex justify-start">
+<h1 className='px-24 py-5 font-semibold text-3xl text-bgyellow lg:font-medium md:text-2xl '>-John</h1>
 </div>
 {/* rome-ignore lint/a11y/useAltText: <explanation> */} 
-<img src="/assets/shelter_bus.png" className=" ml-32 mt-8  w-3/5" />
+<img src="/assets/shelter_bus.png" className=" ml-32 mt-8  w-3/5  md:mt-10"  />
 </div>
   </div>
   </div>
@@ -56,8 +56,8 @@ for a bus!</h1>
 </div>
 
 {/* form side */}
-<div className='w-1/2 px-40 py-72'>
-  <h1 className='text-2xl font-bold text-green-900'>Login</h1>
+<div className='md:w-1/2 flex flex-col justify-center lg:px-40 px-10 py-10 lg:py-72'>
+  <h1 className='text-2xl font-bold mb-3 text-green-900'>Login to Phantom </h1>
         <p className='py-1 text-base border-gray-300 text-gray-400'>Welcome back to your account</p>
         <Formik
           initialValues={{ email: '', password: '' }}
