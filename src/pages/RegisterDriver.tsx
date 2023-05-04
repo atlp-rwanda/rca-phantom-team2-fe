@@ -4,13 +4,12 @@ import { Formik } from "formik";
 // import { useNavigate } from "react-router-dom";
 
 const RegisterDriverValidationSchema = yup.object().shape({
-  first_name: yup.string().required("first name is required"),
-  last_name: yup
+  firstName: yup.string().required("first name is required"),
+  lastName: yup.string().required("last name is required"),
+  email: yup
     .string()
-    .email("Please enter valid email")
-    .required("last name is required"),
-  email: yup.string().required("Email is required"),
-
+    .email("Please enter a valid email")
+    .required("Email is required"),
   role: yup.string().required("role is required"),
 });
 
@@ -18,19 +17,20 @@ export default function RegisterDriver() {
   // const navigate = useNavigate();
 
   const handleSubmitRegister = async (data: {
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     role: string;
   }) => {
     try {
       const response = await axios.post(
-        "https://rca-phantom-team2-bn.onrender.com/users/register",
+        "https://localhost:4000/api/users/register",
+
         data
       );
       console.log(response.data.message);
     } catch (error) {
-      console.log("unable to register");
+      console.log(error);
     }
   };
 
@@ -42,8 +42,8 @@ export default function RegisterDriver() {
           <Formik
             validationSchema={RegisterDriverValidationSchema}
             initialValues={{
-              first_name: "",
-              last_name: "",
+              firstName: "",
+              lastName: "",
               email: "",
               role: "",
             }}
@@ -57,7 +57,6 @@ export default function RegisterDriver() {
               handleBlur,
               handleSubmit,
               isSubmitting,
-              /* and other goodies */
             }) => (
               <form
                 className="row bg-white p-16 rounded-md"
@@ -74,37 +73,35 @@ export default function RegisterDriver() {
                   <br />
                   <input
                     type="text"
-                    name="first_name"
-                    id="first_name"
+                    name="firstName"
+                    id="firstName"
                     className=" p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.first_name}
+                    value={values.firstName}
                   />
 
                   <div className="text-rose-600 my-2">
-                    {errors.first_name &&
-                      touched.first_name &&
-                      errors.first_name}
+                    {errors.firstName && touched.firstName && errors.firstName}
                   </div>
                 </div>
                 <div className="mb-3 col-6">
-                  <label htmlFor="last_name" className="form-label">
+                  <label htmlFor="lastName" className="form-label">
                     Last name
                   </label>
                   <br />
                   <input
                     type="text"
-                    name="last_name"
-                    id="last_name"
+                    name="lastName"
+                    id="lastName"
                     className="p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.last_name}
+                    value={values.lastName}
                   />
 
                   <div className="text-rose-600 my-2">
-                    {errors.last_name && touched.last_name && errors.last_name}
+                    {errors.lastName && touched.lastName && errors.lastName}
                   </div>
                 </div>
                 <div className="mb-3 col-6">
@@ -127,19 +124,20 @@ export default function RegisterDriver() {
                 </div>
 
                 <div className="mb-3 col-6">
-                  <label htmlFor="exampleRole1" className="form-label">
+                  <label htmlFor="role" className="form-label">
                     Role
-                  </label>{" "}
+                  </label>
                   <br />
                   <input
                     type="text"
-                    name="text"
-                    id="exampleInputRole"
-                    className="mt-2 p-2 w-full rounded border h-12 mb-2 border-2 border-gray-300"
+                    name="role"
+                    id="roleId"
+                    className=" p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.role}
                   />
+
                   <div className="text-rose-600 my-2">
                     {errors.role && touched.role && errors.role}
                   </div>
@@ -147,7 +145,6 @@ export default function RegisterDriver() {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
                   className="mt-14 -mt-10 bg-dark-green py-2.5 w-32 text-white rounded-md text-xs text-center font-semibold cursor-pointer"
                 >
                   Register
