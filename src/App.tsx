@@ -5,6 +5,7 @@ import Home from "@/pages/Home";
 import PageNotFound from "@/pages/PageNotFound";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import RegisterDriver from "./pages/RegisterDriver";
 import { store } from "@/store";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/counter" element={<Counter />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/registerDriver" element={<RegisterDriver />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
