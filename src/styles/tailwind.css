@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.main--login-bg{
+    background: url('/assets/Component 2.png');
+    background-size: 80%;
+    background-position: center left 40em;
+    background-repeat: no-repeat;
+}
