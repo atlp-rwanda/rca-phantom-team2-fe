@@ -113,7 +113,7 @@ for a bus!</h1>
               (errortext && <div className='my-1 text-red-500 text-xs'>{errortext}</div>)
               }</div>
               <Link to="/forgot-password">
-              <div className='text-bgyellow mt-6'> Forgot password</div></Link>
+              <div className='text-bgyellow mt-6'> Forgot your password?</div></Link>
             <button
               type='submit'
               className='flex items-center justify-center focus:shadow-outline mt-10 font-bold bg-bgprimary text-white py-4 px-4 rounded'
