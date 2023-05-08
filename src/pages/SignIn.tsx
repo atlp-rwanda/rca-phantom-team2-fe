@@ -104,7 +104,7 @@ for a bus!</h1>
             </label>
             <Field
               name='password'
-              type='passowrd'
+              type='password'
               className='focus:shadow-outline w-full appearance-none rounded border border-gray-300 py-4 px-6 leading-tight text-gray-700 focus:outline-none'
               placeholder='Please Enter Your Password'
             />
