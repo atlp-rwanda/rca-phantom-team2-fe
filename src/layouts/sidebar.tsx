@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import logo from "../assets/logo.png";
 import Logout from "../components/Logout";
-import { useSelector } from 'react-redux';
 
 export default function Sidebar() {
 
