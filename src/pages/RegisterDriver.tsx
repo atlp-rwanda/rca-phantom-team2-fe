@@ -56,7 +56,6 @@ export default function RegisterDriver() {
               handleChange,
               handleBlur,
               handleSubmit,
-              isSubmitting,
             }) => (
               <form
                 className="row bg-white p-16 rounded-md"
