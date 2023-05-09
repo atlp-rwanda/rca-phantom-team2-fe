@@ -1,5 +1,7 @@
+import React from "react";
 import Sidebar from "@/components/Dashboard/Sidebar";
 import Topbar from "@/components/Dashboard/Topbar";
+import { useNavigate } from "react-router";
 
 export default function MainDash({ children }: any) {
   const toggleSidebar = () => {
@@ -8,6 +10,14 @@ export default function MainDash({ children }: any) {
     sidebar?.classList.toggle("hidden");
     overlay?.classList.toggle("hidden");
   };
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!localStorage.getItem("userToken")) {
+      navigate("/signin");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="flex font-inter h-screen relative">
       <Sidebar />
