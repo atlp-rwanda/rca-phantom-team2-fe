@@ -8,9 +8,10 @@ export const login = createAsyncThunk(
   async (payload: { email: string; password: string, device_id: string }, thunkAPI) => {
     try {
       const response = await axios.post(`${config.BASE_URL}/users/signin`, payload);
-      const { token } = response.data;
-      Cookies.set('token', token);
+      const  token  = response.data.data.accessToken;
+      localStorage.setItem('token', token);
       console.log(response);
+      console.log(response.data.data.accessToken);
       return token;
     // rome-ignore lint/suspicious/noExplicitAny: <explanation>
 }  catch (error: any) {
@@ -25,7 +26,7 @@ export const logout = async () => {
       //   headers: { Authorization: `Bearer ${Cookies.get('token')}` },
       // });
       sessionStorage.clear();
-      Cookies.remove('token');
+      localStorage.removeItem('token');
       console.log('Logged out successfully!');
     } catch (error) {
       console.error(error);
