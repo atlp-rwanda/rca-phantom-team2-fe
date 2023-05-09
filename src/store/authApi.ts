@@ -13,7 +13,7 @@ export const login = createAsyncThunk(
       return data;
       // rome-ignore lint/suspicious/noExplicitAny: <explanation>
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error) {
+    } catch (error:any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
