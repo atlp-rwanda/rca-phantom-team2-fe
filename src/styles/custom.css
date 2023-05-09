@@ -14,5 +14,10 @@
 }
 
 .bg-dark-green {
-  background-color: #253b33;
+  background-color: #253B33;
+}
+
+.active{
+  background: #ffffffaa;
+  color: #253b33;
 }

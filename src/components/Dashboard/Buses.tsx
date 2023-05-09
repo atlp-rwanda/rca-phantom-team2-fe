@@ -16,14 +16,16 @@ import { RootState } from "@/store";
 import { deleteBus } from "@/services/buses";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import search from "../../assets/Icons/search.svg";
+import filter from "../../assets/Icons/filter.svg";
 
 const columns = [
   "Type",
   "Plate Number",
   "Registration Number",
   "Model",
-  "Manufacturer",
-  "Created At",
+  "Number of Seats",
+  "Available Seats",
 ];
 
 export type Bus = {
@@ -32,6 +34,9 @@ export type Bus = {
   plateNumber: string;
   regNumber: string;
   model: string;
+  numOfSeats?: number;
+  availbleSeats?: number;
+  status?: string;
   manufacturer: string;
   createdAt?: string;
   updatedAt?: string;
@@ -43,6 +48,9 @@ export type NewBus = {
   regNumber: string;
   model: string;
   manufacturer: string;
+  numOfSeats?: number;
+  availbleSeats?: number;
+  status?: string;
 };
 
 export default function Buses() {
@@ -53,7 +61,6 @@ export default function Buses() {
   const [regNumber, setRegNumber] = useState<string>("");
   const [model, setModel] = useState<string>("");
   const [manufacturer, setManufacturer] = useState<string>("");
-  const [displayData, setDisplayData] = useState<Bus[]>([]);
 
   const dispatch = useDispatch();
   const { buses, loading } = useSelector((state: RootState) => state.bus);
@@ -104,7 +111,16 @@ export default function Buses() {
         })
         .catch((err) => console.log(err));
     } else if (show === 1) {
-      addNewBus({ type, plateNumber, regNumber, model, manufacturer })
+      addNewBus({
+        type,
+        plateNumber,
+        regNumber,
+        model,
+        manufacturer,
+        numOfSeats: 30,
+        availbleSeats: 30,
+        status: "STOPPED",
+      })
         .then((res) => {
           dispatch(addBus({ bus: res.data.data }));
           clearFields();
@@ -128,21 +144,6 @@ export default function Buses() {
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    const _t: Bus[] = buses.map((b: Bus) => {
-      return {
-        id: b.id,
-        type: b.type,
-        plateNumber: b.plateNumber,
-        regNumber: b.regNumber,
-        model: b.model,
-        manufacturer: b.manufacturer,
-        createdAt: new Date(b.createdAt as string).toDateString(),
-      };
-    });
-    setDisplayData(_t);
-  }, [buses]);
 
   return (
     <div>
@@ -238,11 +239,34 @@ export default function Buses() {
           </form>
         </div>
       ) : (
-        <div className="mt-14">
-          <div className="mb-8 flex justify-between items-center">
-            <div className="font-bold text-dark-green text-2xl">All buses</div>
+        <div className="mt-10">
+          <div className="font-bold text-dark-green text-xl">Buses</div>
+          <div className="mb-14 mt-3 flex justify-between items-center">
+            <div className="flex items-center">
+              <div className="font-medium text-sm">Passengers</div>
+              <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
+                31
+              </div>
+            </div>
+            <div className="flex w-3/12">
+              <div className="relative w-2/3 flex items-center space-x-4">
+                <input
+                  type="text"
+                  className="pl-8 pr-4 py-2 rounded-lg border border-gray-300 w-full focus:outline-none text-xs"
+                  placeholder="Search passengers"
+                />
+                <img
+                  src={search}
+                  alt="Icon"
+                  className="absolute md:-left-1.5 left-0 top-1.5"
+                />
+              </div>
+              <div className="border border-gray-300 rounded-lg flex justify-center items-center px-2 ml-3 cursor-pointer">
+                <img src={filter} alt="Icon" />
+              </div>
+            </div>
             <div
-              className="text-white bg-dark-green text-xs py-2 px-8 rounded-lg cursor-pointer"
+              className="text-white bg-green-800 text-xs py-2 px-8 rounded-lg cursor-pointer"
               onClick={() => setShow(1)}
             >
               New Bus
@@ -253,8 +277,9 @@ export default function Buses() {
           ) : (
             <Table
               columns={columns}
-              data={displayData}
+              data={buses}
               rowsPerPage={9}
+              type="buses"
               handleAction={handleAction}
             />
           )}
