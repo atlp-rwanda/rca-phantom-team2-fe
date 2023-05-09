@@ -40,7 +40,6 @@ export default function Navbar() {
         {/*  */}
         <Link to="/signin">
         <div className="bg-gray-200 px-5 py-2 text-xs rounded">LOGIN</div></Link>
-        
       </div>
     </nav>
   );

@@ -21,7 +21,6 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path='/dashboard' element={<Sidebar/>} />
-
         </Routes>
       </BrowserRouter>
     </Provider>
