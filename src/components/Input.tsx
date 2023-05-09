@@ -4,21 +4,28 @@ interface InputProps {
   type: string;
   name: string;
   placeholder?: string;
-  value?: string; 
   required?: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void; 
+  value?: string | number;
+  onChange?: any;
 }
 
-const Input: React.FC<InputProps> = ({ type, name, placeholder, value, required, onChange }) => {
+const Input: React.FC<InputProps> = ({
+  type,
+  name,
+  placeholder,
+  required,
+  value,
+  onChange,
+}) => {
   return (
-    <input 
-      type={type} 
-      name={name} 
-      placeholder={placeholder} 
-      required={required} 
-      className='border-2 border-black border-opacity-25 block outline-none p-2 w-full max-w-md rounded-lg mt-2'
-      value={value} 
-      onChange={onChange} 
+    <input
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      required={required}
+      value={value}
+      className="border-2 border-black border-opacity-25 block outline-none p-2 w-full max-w-md rounded-lg mt-2"
+      onChange={onChange}
     />
   );
 };
