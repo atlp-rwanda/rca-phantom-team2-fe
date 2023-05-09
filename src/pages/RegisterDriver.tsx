@@ -1,7 +1,6 @@
 import * as yup from "yup";
 import axios from "axios";
 import { Formik } from "formik";
-// import { useNavigate } from "react-router-dom";
 
 const RegisterDriverValidationSchema = yup.object().shape({
   firstName: yup.string().required("first name is required"),
@@ -36,9 +35,8 @@ export default function RegisterDriver() {
 
   return (
     <div className="lg:px-10 px-5 pb-10 pt-5 relative font-poppins h-screen overflow-y-scroll bg-gray-100 overflow-x-hidden">
-      <div className="flex flex-wrap lg:mt-24 mt-20 w-full">
-        <div className="lg:w-1/2 flex flex-col lg:justify-normal justify-center items-center lg:items-start"></div>
-        <div className=" w-full relative lg:flex md:h-auto h-56 flex justify-center items-center mt-14 lg:mt-0">
+      <div className="flex flex-wrap lg:mt-24 mt-20 w-full bg-red-400">
+        <div className="w-full relative lg:flex md:h-auto h-56 flex justify-center items-center mt-14 lg:mt-0">
           <Formik
             validationSchema={RegisterDriverValidationSchema}
             initialValues={{
@@ -61,8 +59,7 @@ export default function RegisterDriver() {
                 className="row bg-white p-16 rounded-md"
                 onSubmit={handleSubmit}
               >
-                <div className=" text-center -mt-4 mb-8 text-lg text-dark-green ">
-                  {" "}
+                <div className="text-center -mt-4 mb-8 text-lg text-dark-green">
                   Register Drivers & Operators
                 </div>
                 <div className="mb-3 col-6">
@@ -74,7 +71,7 @@ export default function RegisterDriver() {
                     type="text"
                     name="firstName"
                     id="firstName"
-                    className=" p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
+                    className="p-2 w-full  rounded h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.firstName}
@@ -93,7 +90,7 @@ export default function RegisterDriver() {
                     type="text"
                     name="lastName"
                     id="lastName"
-                    className="p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
+                    className="p-2 w-full  rounded h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.lastName}
@@ -106,13 +103,14 @@ export default function RegisterDriver() {
                 <div className="mb-3 col-6">
                   <label htmlFor="exampleInputEmail1" className="form-label">
                     Email address
-                  </label>{" "}
+                  </label>
+                  {""}
                   <br />
                   <input
                     type="email"
                     name="email"
                     id="exampleInputEmail1"
-                    className="mt-2 p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
+                    className="mt-2 p-2 w-full  rounded h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.email}
@@ -131,7 +129,7 @@ export default function RegisterDriver() {
                     type="text"
                     name="role"
                     id="roleId"
-                    className=" p-2 w-full  rounded border h-12 mb-2 border-2 border-gray-300"
+                    className="p-2 w-full  rounded h-12 mb-2 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.role}
@@ -144,7 +142,7 @@ export default function RegisterDriver() {
 
                 <button
                   type="submit"
-                  className="mt-14 -mt-10 bg-dark-green py-2.5 w-32 text-white rounded-md text-xs text-center font-semibold cursor-pointer"
+                  className="mt-10 bg-dark-green py-2.5 w-32 text-white rounded-md text-xs text-center font-semibold cursor-pointer"
                 >
                   Register
                 </button>
