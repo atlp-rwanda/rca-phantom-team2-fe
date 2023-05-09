@@ -3,7 +3,8 @@ import React, { ReactNode } from "react";
 type ButtonProps = {
   type: "button" | "submit" | "reset" | undefined;
   children: ReactNode;
-  onClick: any;
+  onClick?: any;
+  disabled?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({ type, children, onClick }) => {
