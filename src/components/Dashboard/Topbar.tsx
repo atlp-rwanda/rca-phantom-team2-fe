@@ -5,7 +5,7 @@ import menu from "../../assets/Icons/menu.svg";
 
 export default function Topbar({ toggleSidebar }: any) {
   return (
-    <div className="flex justify-between w-full items-center">
+    <div className="flex justify-between w-full items-center mb-14">
       <div className="relative md:w-2/5 w-3/5 flex items-center space-x-4">
         <div
           className="bg-slate-200 rounded px-1 w-8 h-6 flex items-center justify-center md:hidden"

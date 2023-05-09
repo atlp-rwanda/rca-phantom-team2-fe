@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
+import chevron from "../../assets/Icons/chevron-right.svg";
 
 const TableFooter = ({ range, setPage, page, slice }: any) => {
   useEffect(() => {
@@ -8,19 +9,27 @@ const TableFooter = ({ range, setPage, page, slice }: any) => {
     }
   }, [slice, page, setPage]);
   return (
-    <div className="bg-slate-50 py-3 w-full font-medium text-left text-gray-300 flex items-center justify-center text-xs border-t-0 border border-b-slate-200 ">
+    <div className="py-3 w-full font-medium text-left text-gray-300 flex items-center justify-end text-xs mt-3">
+      <button className="mr-2">
+        <img src={chevron} />
+      </button>
       {range &&
         range.map((el: number, index: number) => (
           <button
             key={index}
-            className={`rounded cursor-pointer mx-1.5 ${
-              page === el ? "text-slate-600" : "text-slate-300"
+            className={`rounded cursor-pointer px-2.5 py-1 mx-1 ${
+              page === el
+                ? "text-white bg-green-800"
+                : "text-gray-500 bg-gray-200"
             }`}
             onClick={() => setPage(el)}
           >
             {el}
           </button>
         ))}
+      <button className="rotate-180 ml-2">
+        <img src={chevron} />
+      </button>
     </div>
   );
 };
