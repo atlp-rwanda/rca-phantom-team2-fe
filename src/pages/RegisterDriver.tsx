@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import axios from "axios";
 import { Formik } from "formik";
+import config from "@/config";
 
 const RegisterDriverValidationSchema = yup.object().shape({
   firstName: yup.string().required("first name is required"),
@@ -23,8 +24,7 @@ export default function RegisterDriver() {
   }) => {
     try {
       const response = await axios.post(
-        "https://localhost:4000/api/users/register",
-
+        `${config.BASE_URL}/users/register`,
         data
       );
       console.log(response.data.message);
