@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import logo from "../assets/logo.png";
 import Logout from "../components/Logout";
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 export default function Sidebar() {
 
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   // // const { token } = useSelector((state) => state.auth)
   // if(!token){
