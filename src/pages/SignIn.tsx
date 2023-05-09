@@ -75,7 +75,7 @@ for a bus!</h1>
                 setErrortext("");
                 setLoading(false);
                 setSubmitting(false);
-                navigate('/dashboard');
+                navigate('/updateprofile');
               } else {
                 if(resultAction.payload){
                   setErrortext(resultAction.payload.message);

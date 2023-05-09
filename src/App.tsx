@@ -6,7 +6,8 @@ import SignIn from "@/pages/SignIn";
 import PageNotFound from "@/pages/PageNotFound";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
-import { store } from "@/store";
+import Updateprofile from "./pages/UpdateProfile";
+import { store } from "@/store/index";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/counter" element={<Counter />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/updateprofile" element={<Updateprofile />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/signin" element={<SignIn />} />
         </Routes>
