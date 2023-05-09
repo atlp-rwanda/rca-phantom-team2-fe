@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { counterReducer } from './reducers/counter';
 import { busesReducer } from './reducers/buses';
+import { busesRoutesReducer } from './reducers/busRoutes';
 
 export const store = configureStore({
     reducer: {
         counter: counterReducer,
-        bus: busesReducer
+        bus: busesReducer,
+        route: busesRoutesReducer
     }
 });
 
