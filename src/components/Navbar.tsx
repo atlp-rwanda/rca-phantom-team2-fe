@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +36,8 @@ export default function Navbar() {
         <a href="">Home</a>
         <a href="">Schedule</a>
         <a href="">Contact Us</a>
-        <div className="bg-gray-200 px-5 py-2 text-xs rounded">LOGIN</div>
+        <Link to="/signin">
+        <div className="bg-gray-200 px-5 py-2 text-xs rounded">LOGIN</div></Link>
       </div>
     </nav>
   );
