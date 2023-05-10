@@ -34,9 +34,9 @@ export default function RegisterDriver() {
   };
 
   return (
-    <div className="lg:px-10 px-5 pb-10 pt-5 relative font-poppins h-screen overflow-y-scroll bg-gray-100 overflow-x-hidden">
-      <div className="flex flex-wrap lg:mt-24 mt-20 w-full bg-red-400">
-        <div className="w-full relative lg:flex md:h-auto h-56 flex justify-center items-center mt-14 lg:mt-0">
+    <div className="h-screen bg-gray-100 font-poppins overflow-y-scroll">
+      <div className="flex flex-col w-full h-full justify-center">
+        <div className="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white rounded-md px-12 py-14">
           <Formik
             validationSchema={RegisterDriverValidationSchema}
             initialValues={{
@@ -55,15 +55,15 @@ export default function RegisterDriver() {
               handleBlur,
               handleSubmit,
             }) => (
-              <form
-                className="row bg-white p-16 rounded-md"
-                onSubmit={handleSubmit}
-              >
-                <div className="text-center -mt-4 mb-8 text-lg text-dark-green">
+              <form onSubmit={handleSubmit}>
+                <h4 className="text-center text-xl pb-10 font-bold text-bgprimary">
                   Register Drivers & Operators
-                </div>
+                </h4>
                 <div className="mb-3 col-6">
-                  <label htmlFor="first_name" className="form-label">
+                  <label
+                    htmlFor="first_name"
+                    className="form-label pb-1 text-sm"
+                  >
                     First name
                   </label>
                   <br />
@@ -71,18 +71,18 @@ export default function RegisterDriver() {
                     type="text"
                     name="firstName"
                     id="firstName"
-                    className="p-2 w-full  rounded h-12 mb-2 border-2 border-gray-300"
+                    className="p-2 w-full rounded h-12 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.firstName}
                   />
 
-                  <div className="text-rose-600 my-2">
+                  <p className="text-red-600 my-1 text-sm capitalize">
                     {errors.firstName && touched.firstName && errors.firstName}
-                  </div>
+                  </p>
                 </div>
-                <div className="mb-3 col-6">
-                  <label htmlFor="lastName" className="form-label">
+                <div className="my-3 col-6">
+                  <label htmlFor="lastName" className="form-label pb-1 text-sm">
                     Last name
                   </label>
                   <br />
@@ -90,38 +90,40 @@ export default function RegisterDriver() {
                     type="text"
                     name="lastName"
                     id="lastName"
-                    className="p-2 w-full  rounded h-12 mb-2 border-2 border-gray-300"
+                    className="p-2 w-full rounded h-12 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.lastName}
                   />
 
-                  <div className="text-rose-600 my-2">
+                  <p className="text-red-600 my-1 text-sm capitalize">
                     {errors.lastName && touched.lastName && errors.lastName}
-                  </div>
+                  </p>
                 </div>
-                <div className="mb-3 col-6">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
+                <div className="my-3 col-6">
+                  <label
+                    htmlFor="exampleInputEmail1"
+                    className="form-label pb-1 text-sm"
+                  >
                     Email address
                   </label>
-                  {""}
                   <br />
                   <input
                     type="email"
                     name="email"
                     id="exampleInputEmail1"
-                    className="mt-2 p-2 w-full  rounded h-12 mb-2 border-2 border-gray-300"
+                    className="p-2 w-full rounded h-12 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.email}
                   />
-                  <div className="text-rose-600 my-2">
+                  <p className="text-red-600 my-1 text-sm capitalize">
                     {errors.email && touched.email && errors.email}
-                  </div>
+                  </p>
                 </div>
 
-                <div className="mb-3 col-6">
-                  <label htmlFor="role" className="form-label">
+                <div className="my-3 col-6">
+                  <label htmlFor="role" className="form-label pb-1 text-sm">
                     Role
                   </label>
                   <br />
@@ -129,20 +131,21 @@ export default function RegisterDriver() {
                     type="text"
                     name="role"
                     id="roleId"
-                    className="p-2 w-full  rounded h-12 mb-2 border-2 border-gray-300"
+                    className="p-2 w-full rounded h-12 border-2 border-gray-300"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.role}
                   />
 
-                  <div className="text-rose-600 my-2">
+                  <p className="text-red-600 my-1 text-sm capitalize">
                     {errors.role && touched.role && errors.role}
-                  </div>
+                  </p>
                 </div>
 
                 <button
                   type="submit"
-                  className="mt-10 bg-dark-green py-2.5 w-32 text-white rounded-md text-xs text-center font-semibold cursor-pointer"
+                  disabled={Object.keys(errors).length > 0}
+                  className="mt-10 py-4 bg-bgprimary text-white block w-full rounded-md text-sm text-center font-semibold"
                 >
                   Register
                 </button>
