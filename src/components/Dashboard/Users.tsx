@@ -61,7 +61,7 @@ export default function Users() {
           },
         }
       )
-      .then((res) => {
+      .then(() => {
         clearFields();
         getAllUsers();
       })
