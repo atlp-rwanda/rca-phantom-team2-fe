@@ -7,6 +7,7 @@ import PageNotFound from "@/pages/PageNotFound";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import RegisterDriver from "./pages/RegisterDriver";
+import { Toaster } from "react-hot-toast";
 import { store } from "@/store";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </Provider>
   );
 }

@@ -2,6 +2,9 @@ import * as yup from "yup";
 import axios from "axios";
 import { Formik } from "formik";
 import config from "@/config";
+import { toast } from "react-hot-toast";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RegisterDriverValidationSchema = yup.object().shape({
   firstName: yup.string().required("first name is required"),
@@ -14,7 +17,8 @@ const RegisterDriverValidationSchema = yup.object().shape({
 });
 
 export default function RegisterDriver() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmitRegister = async (data: {
     firstName: string;
@@ -22,14 +26,29 @@ export default function RegisterDriver() {
     email: string;
     role: string;
   }) => {
+    setIsLoading(true);
+    const toastId = toast.loading("Registering driver...");
     try {
       const response = await axios.post(
         `${config.BASE_URL}/users/register`,
         data
       );
-      console.log(response.data.message);
+      toast.success(response.data.message || "Driver registered successfully", {
+        id: toastId,
+      });
+      navigate(-1);
     } catch (error) {
+      toast.error(
+        // @ts-expect-error get the error from backend
+        error?.response?.data?.message ||
+          // @ts-expect-error get browser error
+          error.message ||
+          "Error registering driver",
+        { id: toastId }
+      );
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -144,7 +163,7 @@ export default function RegisterDriver() {
 
                 <button
                   type="submit"
-                  disabled={Object.keys(errors).length > 0}
+                  disabled={isLoading || Object.keys(errors).length > 0}
                   className="mt-10 py-4 bg-bgprimary text-white block w-full rounded-md text-sm text-center font-semibold"
                 >
                   Register
