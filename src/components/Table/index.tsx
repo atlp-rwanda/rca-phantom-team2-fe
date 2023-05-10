@@ -4,7 +4,6 @@ import useTable from "../../hooks/useTable";
 import TableFooter from "./Footer";
 import edit from "../../assets/Icons/edit.svg";
 import delete_i from "../../assets/Icons/delete.svg";
-import { Bus } from "../Dashboard/Buses";
 
 const Table = ({ columns, data, rowsPerPage, type, handleAction }: any) => {
   const [page, setPage] = useState(1);
@@ -55,6 +54,12 @@ const Table = ({ columns, data, rowsPerPage, type, handleAction }: any) => {
                     <td className="px-3 py-4">{el.name}</td>
                     <td className="px-3 py-4">{el.origin}</td>
                     <td className="px-3 py-4">{el.destination}</td>
+                  </>
+                ) : type === "locations" ? (
+                  <>
+                    <td className="px-3 py-4">{el.name}</td>
+                    <td className="px-3 py-4">{el.latitude}</td>
+                    <td className="px-3 py-4">{el.longitude}</td>
                   </>
                 ) : (
                   <td>Nothin..</td>

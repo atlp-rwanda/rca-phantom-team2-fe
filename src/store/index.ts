@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import { counterReducer } from './reducers/counter';
 import { busesReducer } from './reducers/buses';
 import { busesRoutesReducer } from './reducers/busRoutes';
+import { locationsReducer } from './reducers/location';
 
 export const store = configureStore({
     reducer: {
         counter: counterReducer,
         bus: busesReducer,
-        route: busesRoutesReducer
+        route: busesRoutesReducer,
+        location: locationsReducer
     }
 });
 
