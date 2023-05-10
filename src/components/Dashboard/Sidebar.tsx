@@ -40,20 +40,20 @@ export default function Sidebar() {
             <div className="ml-3">Buses</div>
           </div>
         </NavLink>
-        <NavLink to="/dashboard/roles">
-          <div className="flex py-3 cursor-pointer px-6 items-center">
-            <div className="w-10 flex justify-center">
-              <img src={roles} alt="Icon" />
-            </div>
-            <div className="ml-3">Roles</div>
-          </div>
-        </NavLink>
         <NavLink to="/dashboard/permissions">
           <div className="flex py-3 cursor-pointer px-6 items-center">
             <div className="w-10 flex justify-center">
               <img src={permissions} alt="Icon" />
             </div>
             <div className="ml-3">Permissions</div>
+          </div>
+        </NavLink>
+        <NavLink to="/dashboard/roles">
+          <div className="flex py-3 cursor-pointer px-6 items-center">
+            <div className="w-10 flex justify-center">
+              <img src={roles} alt="Icon" />
+            </div>
+            <div className="ml-3">Roles</div>
           </div>
         </NavLink>
       </div>

@@ -208,7 +208,12 @@ export default function Permissions() {
         <div className="mt-10">
           <div className="font-bold text-dark-green text-xl">Permissions</div>
           <div className="mb-14 mt-3 flex justify-between items-center">
-            <div></div>
+            <div className="flex items-center">
+              <div className="font-medium text-sm">Permissions</div>
+              <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
+                {permissions.length}
+              </div>
+            </div>
             <div className="flex w-3/12">
               <div className="relative w-2/3 flex items-center space-x-4">
                 <input

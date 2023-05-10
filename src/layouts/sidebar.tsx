@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState } from 'react';
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import Logout from "../components/Logout";
 
-export default function Navbar() {
+export default function Sidebar() {
+
   const [isOpen, setIsOpen] = useState(false);
+  // // const { token } = useSelector((state) => state.auth)
+  // if(!token){
+  //   navigate('/signin')
+  // }
   return (
     <nav className="flex justify-between items-center text-xs flex-wrap relative">
       <div className="flex items-center">
@@ -34,11 +39,13 @@ export default function Navbar() {
           isOpen ? "flex" : "hidden"
         }`}
       >
-        <a href="/">Home</a>
+        <a href="">Home</a>
         <a href="">Schedule</a>
         <a href="">Contact Us</a>
-        <Link to="/signin">
-        <div className="bg-gray-200 px-5 py-2 text-xs rounded">LOGIN</div></Link>
+        {/* <div className="ml-5 mb-6 lg:mb-10">  */}
+          <Logout/>          
+        {/* </div> */}
+        
       </div>
     </nav>
   );

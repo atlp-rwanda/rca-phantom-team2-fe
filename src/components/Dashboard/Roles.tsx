@@ -9,13 +9,19 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import search from "../../assets/Icons/search.svg";
 import filter from "../../assets/Icons/filter.svg";
-import { addNewRole, deleteRole, editRole } from "@/services/role";
+import {
+  addNewRole,
+  deleteRole,
+  editRole,
+  grantPermission,
+} from "@/services/role";
 import {
   addRole,
   removeRole,
   setLoading,
   updateRole,
 } from "@/store/reducers/roles";
+import SelectSearch, { SelectSearchOption } from "react-select-search";
 
 const columns = ["Role names", "Description"];
 
@@ -32,14 +38,21 @@ export type NewRole = {
   description: string;
 };
 
+export type RolePermission = {
+  roleId: string;
+  permissionId: string;
+};
+
 export default function Roles() {
   const [show, setShow] = useState(0);
   const [activeObj, setActiveObj] = useState<Role>();
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [rolePermissions, setRolePermissions] = useState<string>("");
 
   const dispatch = useDispatch();
   const { roles, loading } = useSelector((state: RootState) => state.role);
+  const { permissions } = useSelector((state: RootState) => state.permission);
 
   const handleAction = (type: string, obj: Role) => {
     if (type === "edit") {
@@ -83,7 +96,22 @@ export default function Roles() {
         description,
       })
         .then((res) => {
+          const _perms: RolePermission[] = [];
+          rolePermissions.split(",").map((el: string) => {
+            const _t = permissions.find((x) => x.name === el)?.id;
+            if (_t) {
+              const _obj: RolePermission = {
+                roleId: res.data.data.id,
+                permissionId: _t,
+              };
+              _perms.push(_obj);
+            }
+          });
+
+          _perms.map((p) => grantPermission(p.roleId, p.permissionId));
+
           dispatch(addRole({ role: res.data.data }));
+
           clearFields();
         })
         .catch((err) => console.log(err));
@@ -141,6 +169,21 @@ export default function Roles() {
                 }
               />
             </div>
+            {show === 1 && (
+              <div className="mt-4">
+                <label className="mt-30">Permissions</label>
+                <Input
+                  type="text"
+                  name="rolePermissions"
+                  required
+                  value={rolePermissions}
+                  placeholder="Comma separated"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setRolePermissions(e.target.value)
+                  }
+                />
+              </div>
+            )}
 
             <Button type="submit" onClick={handleSubmit}>
               Save
@@ -151,7 +194,12 @@ export default function Roles() {
         <div className="mt-10">
           <div className="font-bold text-dark-green text-xl">Roles</div>
           <div className="mb-14 mt-3 flex justify-between items-center">
-            <div></div>
+            <div className="flex items-center">
+              <div className="font-medium text-sm">Roles</div>
+              <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
+                {roles.length}
+              </div>
+            </div>
             <div className="flex w-3/12">
               <div className="relative w-2/3 flex items-center space-x-4">
                 <input

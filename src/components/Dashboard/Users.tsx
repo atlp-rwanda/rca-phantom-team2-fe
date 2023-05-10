@@ -15,6 +15,7 @@ import SelectSearch, { SelectSearchOption } from "react-select-search";
 import { Oval } from "react-loader-spinner";
 import { setRoles } from "@/store/reducers/roles";
 import { Role } from "./Roles";
+import axios from "axios";
 
 const columns = ["First Name", "Last Name", "email", "Role"];
 
@@ -45,19 +46,30 @@ export default function Users() {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     dispatch(setLoading({ loading: true }));
-    newUser({
-      firstName,
-      lastName,
-      email,
-      roleId,
-    })
+    axios
+      .post(
+        "https://rca-phantom-team2-bn.onrender.com/api/users/register",
+        {
+          firstName,
+          lastName,
+          email,
+          roleId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((res) => {
-        console.log("Done::", res);
-
-        dispatch(addUser({ user: res.data.data }));
         clearFields();
+        getAllUsers();
       })
-      .catch((err) => console.log("ERR::", err));
+      .catch((err) => {
+        console.log(err);
+        clearFields();
+        getAllUsers();
+      });
   };
 
   const clearFields = () => {
@@ -67,6 +79,21 @@ export default function Users() {
     setLastName("");
     setEmail("");
     setRoleId("");
+  };
+
+  const getAllUsers = () => {
+    fetchUsers()
+      .then((res) => {
+        const _users = res.data.data.data.map((u: User) => {
+          return {
+            ...u,
+            roleId: roles.find((x: any) => x.id === u.roleId)?.name,
+          };
+        });
+
+        dispatch(setUsers({ users: _users }));
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -98,15 +125,15 @@ export default function Users() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   const _temp = roles.map((r: Role) => {
-  //     return {
-  //       value: r.id,
-  //       name: r.name,
-  //     };
-  //   });
-  //   setDisplayRoles(_temp);
-  // }, [roles]);
+  useEffect(() => {
+    const _temp = roles.map((r: Role) => {
+      return {
+        value: r.id,
+        name: r.name,
+      };
+    });
+    setDisplayRoles(_temp);
+  }, [roles]);
 
   return (
     <div>
@@ -191,7 +218,12 @@ export default function Users() {
         <div className="mt-10">
           <div className="font-bold text-dark-green text-xl">Users</div>
           <div className="mb-14 mt-3 flex justify-between items-center">
-            <div></div>
+            <div className="flex items-center">
+              <div className="font-medium text-sm">Users</div>
+              <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
+                {users.length}
+              </div>
+            </div>
             <div className="flex w-3/12">
               <div className="relative w-2/3 flex items-center space-x-4">
                 <input

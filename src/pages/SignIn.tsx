@@ -15,7 +15,7 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex font-poppins">
+    <div className="flex h-full font-poppins">
       <div className="hidden sm:block w-1/2">
         <div className="bg-bgsecondary  w-full h-full  flex justify-center items-center ">
           <div className="w-full h-full main--login-bg p-16 md:p-8">
@@ -42,7 +42,7 @@ export default function SignIn() {
                   bus!
                 </h1>
                 <div className="flex justify-start">
-                  <h1 className="px-24 py-5 font-semibold text-2xl text-bgyellow lg:font-medium md:text-2xl ">
+                  <h1 className="px-24 py-5 font-semibold text-3xl text-bgyellow lg:font-medium md:text-2xl ">
                     -John
                   </h1>
                 </div>
@@ -58,9 +58,11 @@ export default function SignIn() {
       </div>
 
       {/* form side */}
-      <div className="md:w-1/2 flex flex-col justify-center lg:px-36 px-10 py-10">
-        <h1 className="text-2xl font-bold mb-2 text-dark-green">Login</h1>
-        <p className="text-base border-gray-300 text-gray-400 mb-2">
+      <div className="md:w-1/2 flex flex-col justify-center lg:px-40 px-10 py-10">
+        <h1 className="text-2xl font-bold mb-1 text-dark-green">
+          Login to Phantom{" "}
+        </h1>
+        <p className="py-1 text-sm border-gray-300 text-gray-400 mb-3">
           Welcome back to your account
         </p>
         <Formik

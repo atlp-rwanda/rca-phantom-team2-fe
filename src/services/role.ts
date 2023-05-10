@@ -22,6 +22,14 @@ export const deleteRole = async (id: string) => {
   return result;
 };
 
+export const grantPermission = async (roleId: string, permissionId: string) => {
+  const result = await axios.post("/roles/grant-permission", {
+    roleId: roleId as string,
+    permissionId,
+  });
+  return result;
+};
+
 export const fetchUsers = async () => {
   const result = await axios.get("/users");
   return result;
