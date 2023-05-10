@@ -55,7 +55,7 @@ export default function RegisterDriver() {
   return (
     <div className="h-screen bg-gray-100 font-poppins overflow-y-scroll">
       <div className="flex flex-col w-full h-full justify-center">
-        <div className="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white rounded-md px-12 py-14">
+        <div className="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto bg-white rounded-md px-8 md:px-12 py-14">
           <Formik
             validationSchema={RegisterDriverValidationSchema}
             initialValues={{
