@@ -266,7 +266,7 @@ export default function Buses() {
               </div>
             </div>
             <div
-              className="text-white bg-green-800 text-xs py-2 px-8 rounded-lg cursor-pointer"
+              className="text-white bg-green-800 text-sm py-2 px-8 rounded-lg cursor-pointer"
               onClick={() => setShow(1)}
             >
               New Bus

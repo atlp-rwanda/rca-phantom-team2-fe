@@ -4,7 +4,6 @@ import useTable from "../../hooks/useTable";
 import TableFooter from "./Footer";
 import edit from "../../assets/Icons/edit.svg";
 import delete_i from "../../assets/Icons/delete.svg";
-import { Bus } from "../Dashboard/Buses";
 
 const Table = ({ columns, data, rowsPerPage, type, handleAction }: any) => {
   const [page, setPage] = useState(1);
@@ -30,9 +29,9 @@ const Table = ({ columns, data, rowsPerPage, type, handleAction }: any) => {
             <th className="p-3">Actions</th>
           </tr>
         </thead>
-        <tbody className="text-gunmetal font-medium">
+        <tbody className="text-gunmetal font-regular">
           {slice &&
-            slice.map((el: Bus, index: number) => (
+            slice.map((el: any, index: number) => (
               <tr className="cursor-auto even:bg-gray-50 text-sm" key={index}>
                 <td className="px-3 py-4">
                   <input
@@ -50,23 +49,52 @@ const Table = ({ columns, data, rowsPerPage, type, handleAction }: any) => {
                     <td className="px-3 py-4">{el.numOfSeats}</td>
                     <td className="px-3 py-4">{el.availbleSeats}</td>
                   </>
+                ) : type === "roles" ? (
+                  <>
+                    <td className="px-3 py-4">{el.name}</td>
+                    <td className="px-3 py-4">{el.description}</td>
+                  </>
+                ) : type === "permissions" ? (
+                  <>
+                    <td className="px-3 py-4">{el.name}</td>
+                    <td className="px-3 py-4">{el.description}</td>
+                    <td className="px-3 py-4">{el.modelName}</td>
+                    <td className="px-3 py-4">{el.operations.join(", ")}</td>
+                  </>
+                ) : type === "users" ? (
+                  <>
+                    <td className="px-3 py-4">{el.firstName}</td>
+                    <td className="px-3 py-4">{el.lastName}</td>
+                    <td className="px-3 py-4">{el.email}</td>
+                    <td className="px-3 py-4">{el.roleId}</td>
+                  </>
                 ) : (
                   <td>Nothin..</td>
                 )}
-                <td className="px-3 py-4 flex items-center space-x-4">
-                  <img
-                    src={edit}
-                    alt="Edit"
-                    className="cursor-pointer"
-                    onClick={() => handleAction("edit", el)}
-                  />
-                  <img
-                    src={delete_i}
-                    alt="Delete"
-                    className="cursor-pointer"
-                    onClick={() => handleAction("delete", el)}
-                  />
-                </td>
+                {type === "permissions" || type === "users" ? (
+                  <td>
+                    <div className="flex space-x-0.5 justify-center">
+                      <div className="pt-0.5 pl-0.5 rounded border border-black"></div>
+                      <div className="pt-0.5 pl-0.5 rounded border border-black"></div>
+                      <div className="pt-0.5 pl-0.5 rounded border border-black"></div>
+                    </div>
+                  </td>
+                ) : (
+                  <td className="px-3 py-4 flex items-center space-x-4">
+                    <img
+                      src={edit}
+                      alt="Edit"
+                      className="cursor-pointer"
+                      onClick={() => handleAction("edit", el)}
+                    />
+                    <img
+                      src={delete_i}
+                      alt="Delete"
+                      className="cursor-pointer"
+                      onClick={() => handleAction("delete", el)}
+                    />
+                  </td>
+                )}
               </tr>
             ))}
         </tbody>

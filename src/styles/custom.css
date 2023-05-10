@@ -21,3 +21,26 @@
   background: #ffffffaa;
   color: #253b33;
 }
+
+.select-search-select{
+  border: 0!important;
+  top: 45px!important;
+}
+
+.select-search-input{
+  background-color: white!important;
+  color: black!important;
+  border: 2px solid rgb(197, 197, 197)!important;
+  border-radius: 0.5rem!important;
+  font-size: 0.875rem!important;
+  line-height: 1.25rem!important;
+  height: auto!important;
+  padding: 8px!important;
+}
+
+.select-search-option, .select-search-not-found{
+  background-color: white!important;
+  color: black!important;
+  font-size: 0.875rem!important;
+  line-height: 1.25rem!important;
+}
