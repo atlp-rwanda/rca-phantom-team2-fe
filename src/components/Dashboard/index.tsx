@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "@/components/Dashboard/Sidebar";
 import Topbar from "@/components/Dashboard/Topbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export default function MainDash({ children }: any) {
   const toggleSidebar = () => {

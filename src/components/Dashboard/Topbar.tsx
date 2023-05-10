@@ -2,6 +2,7 @@ import settings from "../../assets/Icons/settings.svg";
 import bell from "../../assets/Icons/bell.svg";
 import search from "../../assets/Icons/search.svg";
 import menu from "../../assets/Icons/menu.svg";
+import { logout } from "@/store/authApi";
 
 export default function Topbar({ toggleSidebar }: any) {
   const toggleTopMenu = () => {
@@ -49,7 +50,10 @@ export default function Topbar({ toggleSidebar }: any) {
           <div className="pl-4 pr-6 py-2 border-b cursor-pointer hover:bg-slate-50">
             Update
           </div>
-          <div className="pl-4 pr-6 py-2 cursor-pointer hover:bg-slate-50">
+          <div
+            className="pl-4 pr-6 py-2 cursor-pointer hover:bg-slate-50"
+            onClick={() => logout()}
+          >
             Log out
           </div>
         </div>

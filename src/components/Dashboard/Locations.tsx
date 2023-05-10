@@ -2,82 +2,62 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import back from "../../assets/Icons/back.svg";
 import { useState, useEffect } from "react";
-import Table from "../Table";
-import { addNewBus, editBus, fetchBuses } from "@/services/buses";
+import { addNewLocation, editLocation, fetchLocations, deleteLocation } from "@/services/locations";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addBus,
-  removeBus,
-  setBuses,
-  setLoading,
-  updateBus,
-} from "@/store/reducers/buses";
+
+import { addLocation, removeLocation, setLocations, setLoading, updateLocation } from "@/store/reducers/location";
+
+
 import { RootState } from "@/store";
-import { deleteBus } from "@/services/buses";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import search from "../../assets/Icons/search.svg";
 import filter from "../../assets/Icons/filter.svg";
+import Table from "../Table";
 
 const columns = [
-  "Type",
-  "Plate Number",
-  "Registration Number",
-  "Model",
-  "Number of Seats",
-  "Available Seats",
+  "Location Name",
+  "Location Longitude",
+  "Location Latitude",
+
 ];
 
-export type Bus = {
+export type Location = {
   id: string;
-  type: string;
-  plateNumber: string;
-  regNumber: string;
-  model: string;
-  numOfSeats?: number;
-  availbleSeats?: number;
-  status?: string;
-  manufacturer: string;
+  name: string;
+  latitude: string;
+  longitude: string;
   createdAt?: string;
   updatedAt?: string;
 };
 
-export type NewBus = {
-  type: string;
-  plateNumber: string;
-  regNumber: string;
-  model: string;
-  manufacturer: string;
-  numOfSeats?: number;
-  availbleSeats?: number;
-  status?: string;
+export type NewLocation = {
+  name: string;
+  latitude: string;
+  longitude: string;
 };
 
-export default function Buses() {
+export default function Locations() {
   const [show, setShow] = useState(0);
-  const [activeObj, setActiveObj] = useState<Bus>();
-  const [type, setType] = useState<string>("");
-  const [plateNumber, setPlateNumber] = useState<string>("");
-  const [regNumber, setRegNumber] = useState<string>("");
-  const [model, setModel] = useState<string>("");
-  const [manufacturer, setManufacturer] = useState<string>("");
+  const [activeObj, setActiveObj] = useState<Location>();
+  const [name, setName] = useState<string>("");
+  const [latitude, setLatitude] = useState<string>("");
+  const [longitude, setLongitude] = useState<string>("");
 
   const dispatch = useDispatch();
-  const { buses, loading } = useSelector((state: RootState) => state.bus);
+  const { locations, loading } = useSelector((state: RootState) => state.location);
 
-  const handleAction = (type: string, obj: Bus) => {
+  const handleAction = (type: string, obj: Location) => {
     if (type === "edit") {
-      setActiveObj(obj as Bus);
-      setType(obj.type);
-      setPlateNumber(obj.plateNumber);
-      setRegNumber(obj.regNumber);
-      setModel(obj.model);
-      setManufacturer(obj.manufacturer);
+      setActiveObj(obj as Location);
+      setName(obj.name);
+      setLatitude(obj.latitude);
+      setLongitude(obj.longitude);
       setShow(2);
     } else if (type === "delete") {
       dispatch(setLoading());
-      deleteBus(obj.id)
-        .then(() => dispatch(removeBus({ id: obj.id })))
+      deleteLocation(obj.id)
+        .then(() => dispatch(removeLocation({ id: obj.id })))
         .catch((err) => console.log(err));
     }
   };
@@ -85,23 +65,19 @@ export default function Buses() {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (show === 2) {
-      editBus(activeObj?.id as string, {
-        type,
-        plateNumber,
-        regNumber,
-        model,
-        manufacturer,
+      editLocation(activeObj?.id as string, {
+        name,
+        latitude,
+        longitude
       })
         .then(() => {
           dispatch(
-            updateBus({
+            updateLocation({
               updated: {
                 id: activeObj?.id as string,
-                type,
-                plateNumber,
-                regNumber,
-                model,
-                manufacturer,
+                name,
+                latitude,
+                longitude,
                 updatedAt: activeObj?.updatedAt,
                 createdAt: activeObj?.createdAt,
               },
@@ -111,18 +87,13 @@ export default function Buses() {
         })
         .catch((err) => console.log(err));
     } else if (show === 1) {
-      addNewBus({
-        type,
-        plateNumber,
-        regNumber,
-        model,
-        manufacturer,
-        numOfSeats: 30,
-        availbleSeats: 30,
-        status: "STOPPED",
+      addNewLocation({
+        name,
+        latitude,
+        longitude
       })
         .then((res) => {
-          dispatch(addBus({ bus: res.data.data }));
+          dispatch(addLocation({ location: res.data.data }));
           clearFields();
         })
         .catch((err) => console.log(err));
@@ -130,18 +101,17 @@ export default function Buses() {
   };
 
   const clearFields = () => {
-    setType("");
-    setPlateNumber("");
-    setRegNumber("");
-    setModel("");
-    setManufacturer("");
+    setName("");
+    setLatitude("");
+    setLongitude("");
     setShow(0);
   };
 
   useEffect(() => {
-    fetchBuses()
-      .then((res) => dispatch(setBuses({ buses: res.data.data.data })))
+    fetchLocations()
+      .then((res) => dispatch(setLocations({ locations: res.data.data.data })))
       .catch((err) => console.log(err));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -158,78 +128,52 @@ export default function Buses() {
           {show === 1 ? (
             <div>
               <div className="font-bold text-dark-green text-2xl">
-                Add new bus
+                Add location
               </div>
               <div className="text-gray-400 mt-1 text-xs">
-                New bus, a driver, and a route
+                New location creation
               </div>
             </div>
           ) : (
-            <div className="font-bold text-dark-green text-2xl">Update bus</div>
+            <div className="font-bold text-dark-green text-2xl">Update location</div>
           )}
           <form className="text-sm">
             <div className="mt-8">
-              <label>Type</label>
+              <label>Location Name</label>
               <Input
                 type="text"
-                name="type"
-                placeholder="ex: Single-deck"
+                name="name"
+                placeholder="ex: Nyamirambo"
                 required
-                value={type}
+                value={name}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setType(e.target.value)
+                  setName(e.target.value)
                 }
               />
             </div>
             <div className="mt-4">
-              <label className="mt-30">Plate Number</label>
+              <label className="mt-30">Location Latitude</label>
               <Input
-                type="text"
-                name="plateNumber"
-                placeholder="ex: RAD456Z"
+                type="number"
+                name="latitude"
+                placeholder="0"
                 required
-                value={plateNumber}
+                value={latitude}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPlateNumber(e.target.value)
+                  setLatitude(e.target.value)
                 }
               />
             </div>
             <div className="mt-4">
-              <label className="mt-30">Registration Number</label>
+              <label className="mt-30">Location Longitude</label>
               <Input
-                type="text"
-                name="regNumber"
-                placeholder="0A0AA00A0A0000000"
+                type="number"
+                name="longitude"
+                placeholder="0"
                 required
-                value={regNumber}
+                value={longitude}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setRegNumber(e.target.value)
-                }
-              />
-            </div>
-            <div className="mt-4">
-              <label className="mt-30">Model</label>
-              <Input
-                type="text"
-                name="model"
-                placeholder="ex: Volvo"
-                required
-                value={model}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setModel(e.target.value)
-                }
-              />
-            </div>
-            <div className="mt-4">
-              <label className="mt-30">Manufacturer</label>
-              <Input
-                type="text"
-                name="manufacturer"
-                placeholder="ex: Toyota"
-                required
-                value={manufacturer}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setManufacturer(e.target.value)
+                  setLongitude(e.target.value)
                 }
               />
             </div>
@@ -240,12 +184,12 @@ export default function Buses() {
         </div>
       ) : (
         <div className="mt-10">
-          <div className="font-bold text-dark-green text-xl">Buses</div>
+          <div className="font-bold text-dark-green text-xl">Locations</div>
           <div className="mb-14 mt-3 flex justify-between items-center">
             <div className="flex items-center">
-              <div className="font-medium text-sm">Buses</div>
+              <div className="font-medium text-sm">Locations</div>
               <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
-                {buses.length}
+                {locations.length}
               </div>
             </div>
             <div className="flex w-3/12">
@@ -253,7 +197,7 @@ export default function Buses() {
                 <input
                   type="text"
                   className="pl-8 pr-4 py-2 rounded-lg border border-gray-300 w-full focus:outline-none text-xs"
-                  placeholder="Search passengers"
+                  placeholder="Search routes"
                 />
                 <img
                   src={search}
@@ -269,7 +213,7 @@ export default function Buses() {
               className="text-white bg-green-800 text-xs py-2 px-8 rounded-lg cursor-pointer"
               onClick={() => setShow(1)}
             >
-              New Bus
+              New Location
             </div>
           </div>
           {loading ? (
@@ -277,9 +221,9 @@ export default function Buses() {
           ) : (
             <Table
               columns={columns}
-              data={buses}
+              data={locations}
               rowsPerPage={9}
-              type="buses"
+              type="locations"
               handleAction={handleAction}
             />
           )}

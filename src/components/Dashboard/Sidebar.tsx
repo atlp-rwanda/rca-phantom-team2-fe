@@ -24,14 +24,6 @@ export default function Sidebar() {
             <div className="ml-3">Users</div>
           </div>
         </NavLink>
-        <NavLink to="/dashboard/locations">
-          <div className="flex py-3 cursor-pointer px-6 items-center">
-            <div className="w-10 flex justify-center">
-              <img src={location} alt="Icon" />
-            </div>
-            <div className="ml-3">Locations</div>
-          </div>
-        </NavLink>
         <NavLink to="/dashboard/buses">
           <div className="flex py-3 cursor-pointer px-6 items-center">
             <div className="w-10 flex justify-center">
@@ -54,6 +46,22 @@ export default function Sidebar() {
               <img src={roles} alt="Icon" />
             </div>
             <div className="ml-3">Roles</div>
+          </div>
+        </NavLink>
+        <NavLink to="/dashboard/locations">
+          <div className="flex py-3 cursor-pointer px-6 items-center">
+            <div className="w-10 flex justify-center">
+              <img src={location} alt="Icon" />
+            </div>
+            <div className="ml-3">Locations</div>
+          </div>
+        </NavLink>
+        <NavLink to="/dashboard/routes">
+          <div className="flex py-3 cursor-pointer px-6 items-center">
+            <div className="w-10 flex justify-center">
+              <img src={location} alt="Icon" />
+            </div>
+            <div className="ml-3">Routes</div>
           </div>
         </NavLink>
       </div>

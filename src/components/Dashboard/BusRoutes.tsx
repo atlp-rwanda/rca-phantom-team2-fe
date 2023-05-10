@@ -2,82 +2,65 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import back from "../../assets/Icons/back.svg";
 import { useState, useEffect } from "react";
-import Table from "../Table";
-import { addNewBus, editBus, fetchBuses } from "@/services/buses";
+// import RoutesTable from "../RoutesTable";
+import { addNewBusRoutes, editBusRoutes, fetchBusesRoutes, deleteBusRoutes } from "@/services/busesRoutes";
+import { fetchLocations } from "@/services/locations";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addBus,
-  removeBus,
-  setBuses,
-  setLoading,
-  updateBus,
-} from "@/store/reducers/buses";
+
+import { addBusRoute, removeBusRoute, setBusRoutes, setLoading, updateBusRoute } from "@/store/reducers/busRoutes";
+import { setLocations } from "@/store/reducers/location";
+
+
 import { RootState } from "@/store";
-import { deleteBus } from "@/services/buses";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import search from "../../assets/Icons/search.svg";
 import filter from "../../assets/Icons/filter.svg";
+import Table from "../Table";
 
 const columns = [
-  "Type",
-  "Plate Number",
-  "Registration Number",
-  "Model",
-  "Number of Seats",
-  "Available Seats",
+  "Route Name",
+  "Route Origin",
+  "Route Destination",
+
 ];
 
-export type Bus = {
+export type BusRoute = {
   id: string;
-  type: string;
-  plateNumber: string;
-  regNumber: string;
-  model: string;
-  numOfSeats?: number;
-  availbleSeats?: number;
-  status?: string;
-  manufacturer: string;
+  name: string;
+  origin: string;
+  destination: string;
   createdAt?: string;
   updatedAt?: string;
 };
 
-export type NewBus = {
-  type: string;
-  plateNumber: string;
-  regNumber: string;
-  model: string;
-  manufacturer: string;
-  numOfSeats?: number;
-  availbleSeats?: number;
-  status?: string;
+export type NewBusRoute = {
+  name: string;
+  origin: string;
+  destination: string;
 };
 
-export default function Buses() {
+export default function BusRoutes() {
   const [show, setShow] = useState(0);
-  const [activeObj, setActiveObj] = useState<Bus>();
-  const [type, setType] = useState<string>("");
-  const [plateNumber, setPlateNumber] = useState<string>("");
-  const [regNumber, setRegNumber] = useState<string>("");
-  const [model, setModel] = useState<string>("");
-  const [manufacturer, setManufacturer] = useState<string>("");
+  const [activeObj, setActiveObj] = useState<BusRoute>();
+  const [name, setName] = useState<string>("");
+  const [origin, setOrigin] = useState<string>("");
+  const [destination, setDestination] = useState<string>("");
 
   const dispatch = useDispatch();
-  const { buses, loading } = useSelector((state: RootState) => state.bus);
+  const { routes, loading } = useSelector((state: RootState) => state.route);
 
-  const handleAction = (type: string, obj: Bus) => {
+  const handleAction = (type: string, obj: BusRoute) => {
     if (type === "edit") {
-      setActiveObj(obj as Bus);
-      setType(obj.type);
-      setPlateNumber(obj.plateNumber);
-      setRegNumber(obj.regNumber);
-      setModel(obj.model);
-      setManufacturer(obj.manufacturer);
+      setActiveObj(obj as BusRoute);
+      setName(obj.name);
+      setOrigin(obj.origin);
+      setDestination(obj.destination);
       setShow(2);
     } else if (type === "delete") {
       dispatch(setLoading());
-      deleteBus(obj.id)
-        .then(() => dispatch(removeBus({ id: obj.id })))
+      deleteBusRoutes(obj.id)
+        .then(() => dispatch(removeBusRoute({ id: obj.id })))
         .catch((err) => console.log(err));
     }
   };
@@ -85,23 +68,19 @@ export default function Buses() {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (show === 2) {
-      editBus(activeObj?.id as string, {
-        type,
-        plateNumber,
-        regNumber,
-        model,
-        manufacturer,
+      editBusRoutes(activeObj?.id as string, {
+        name,
+        origin,
+        destination
       })
         .then(() => {
           dispatch(
-            updateBus({
+            updateBusRoute({
               updated: {
                 id: activeObj?.id as string,
-                type,
-                plateNumber,
-                regNumber,
-                model,
-                manufacturer,
+                name,
+                origin,
+                destination,
                 updatedAt: activeObj?.updatedAt,
                 createdAt: activeObj?.createdAt,
               },
@@ -111,18 +90,13 @@ export default function Buses() {
         })
         .catch((err) => console.log(err));
     } else if (show === 1) {
-      addNewBus({
-        type,
-        plateNumber,
-        regNumber,
-        model,
-        manufacturer,
-        numOfSeats: 30,
-        availbleSeats: 30,
-        status: "STOPPED",
+      addNewBusRoutes({
+        name,
+        origin,
+        destination
       })
         .then((res) => {
-          dispatch(addBus({ bus: res.data.data }));
+          dispatch(addBusRoute({ route: res.data.data }));
           clearFields();
         })
         .catch((err) => console.log(err));
@@ -130,18 +104,30 @@ export default function Buses() {
   };
 
   const clearFields = () => {
-    setType("");
-    setPlateNumber("");
-    setRegNumber("");
-    setModel("");
-    setManufacturer("");
+    setName("");
+    setOrigin("");
+    setDestination("");
     setShow(0);
   };
 
   useEffect(() => {
-    fetchBuses()
-      .then((res) => dispatch(setBuses({ buses: res.data.data.data })))
-      .catch((err) => console.log(err));
+    fetchLocations()
+    .then((res1) => {
+      fetchBusesRoutes()
+        .then((res) => {
+          const _routes = res.data.data.data.map((r: BusRoute) => {
+            return {
+              ...r,
+              origin: res1.data.data.data.find((x: any) => x.id === r.origin).name,
+              destination: res1.data.data.data.find((x: any) => x.id === r.destination).name
+            }
+          })
+          dispatch(setBusRoutes({ routes: _routes}))
+          dispatch(setLocations({ locations: res1.data.data.data}))
+        })
+    })
+    .catch((err) => console.log(err));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -158,78 +144,52 @@ export default function Buses() {
           {show === 1 ? (
             <div>
               <div className="font-bold text-dark-green text-2xl">
-                Add new bus
+                Add new route
               </div>
               <div className="text-gray-400 mt-1 text-xs">
-                New bus, a driver, and a route
+                New route creation
               </div>
             </div>
           ) : (
-            <div className="font-bold text-dark-green text-2xl">Update bus</div>
+            <div className="font-bold text-dark-green text-2xl">Update route</div>
           )}
           <form className="text-sm">
             <div className="mt-8">
-              <label>Type</label>
+              <label>Route Name</label>
               <Input
                 type="text"
-                name="type"
-                placeholder="ex: Single-deck"
+                name="name"
+                placeholder="ex: Nyamirambo-Nyabugogo"
                 required
-                value={type}
+                value={name}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setType(e.target.value)
+                  setName(e.target.value)
                 }
               />
             </div>
             <div className="mt-4">
-              <label className="mt-30">Plate Number</label>
+              <label className="mt-30">Route Origin</label>
               <Input
                 type="text"
-                name="plateNumber"
-                placeholder="ex: RAD456Z"
+                name="origin"
+                placeholder="Nyamirambo"
                 required
-                value={plateNumber}
+                value={origin}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setPlateNumber(e.target.value)
+                  setOrigin(e.target.value)
                 }
               />
             </div>
             <div className="mt-4">
-              <label className="mt-30">Registration Number</label>
+              <label className="mt-30">Route Destination</label>
               <Input
                 type="text"
-                name="regNumber"
-                placeholder="0A0AA00A0A0000000"
+                name="destination"
+                placeholder="Nyabugogo"
                 required
-                value={regNumber}
+                value={destination}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setRegNumber(e.target.value)
-                }
-              />
-            </div>
-            <div className="mt-4">
-              <label className="mt-30">Model</label>
-              <Input
-                type="text"
-                name="model"
-                placeholder="ex: Volvo"
-                required
-                value={model}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setModel(e.target.value)
-                }
-              />
-            </div>
-            <div className="mt-4">
-              <label className="mt-30">Manufacturer</label>
-              <Input
-                type="text"
-                name="manufacturer"
-                placeholder="ex: Toyota"
-                required
-                value={manufacturer}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setManufacturer(e.target.value)
+                  setDestination(e.target.value)
                 }
               />
             </div>
@@ -240,12 +200,12 @@ export default function Buses() {
         </div>
       ) : (
         <div className="mt-10">
-          <div className="font-bold text-dark-green text-xl">Buses</div>
+          <div className="font-bold text-dark-green text-xl">Routes</div>
           <div className="mb-14 mt-3 flex justify-between items-center">
             <div className="flex items-center">
-              <div className="font-medium text-sm">Buses</div>
+              <div className="font-medium text-sm">Routes</div>
               <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
-                {buses.length}
+                {routes.length}
               </div>
             </div>
             <div className="flex w-3/12">
@@ -253,7 +213,7 @@ export default function Buses() {
                 <input
                   type="text"
                   className="pl-8 pr-4 py-2 rounded-lg border border-gray-300 w-full focus:outline-none text-xs"
-                  placeholder="Search passengers"
+                  placeholder="Search routes"
                 />
                 <img
                   src={search}
@@ -269,7 +229,7 @@ export default function Buses() {
               className="text-white bg-green-800 text-xs py-2 px-8 rounded-lg cursor-pointer"
               onClick={() => setShow(1)}
             >
-              New Bus
+              New Route
             </div>
           </div>
           {loading ? (
@@ -277,9 +237,9 @@ export default function Buses() {
           ) : (
             <Table
               columns={columns}
-              data={buses}
+              data={routes}
               rowsPerPage={9}
-              type="buses"
+              type="busesRoutes"
               handleAction={handleAction}
             />
           )}

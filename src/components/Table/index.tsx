@@ -68,6 +68,18 @@ const Table = ({ columns, data, rowsPerPage, type, handleAction }: any) => {
                     <td className="px-3 py-4">{el.email}</td>
                     <td className="px-3 py-4">{el.roleId}</td>
                   </>
+                ) : type === "busesRoutes" ? (
+                  <>
+                    <td className="px-3 py-4">{el.name}</td>
+                    <td className="px-3 py-4">{el.origin}</td>
+                    <td className="px-3 py-4">{el.destination}</td>
+                  </>
+                ) : type === "locations" ? (
+                  <>
+                    <td className="px-3 py-4">{el.name}</td>
+                    <td className="px-3 py-4">{el.latitude}</td>
+                    <td className="px-3 py-4">{el.longitude}</td>
+                  </>
                 ) : (
                   <td>Nothin..</td>
                 )}
