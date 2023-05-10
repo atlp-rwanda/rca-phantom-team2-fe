@@ -18,6 +18,8 @@ const routesSlice = createSlice({
         setBusRoutes: (state, action: PayloadAction<{ routes: BusRoute[] }>) => {
             state.routes = [...action.payload.routes];
             state.loading = false;
+            console.log("These are the routes")
+            console.log(state.routes)
         },
         updateBusRoute: (state, action: PayloadAction<{ updated: BusRoute }>) => {
             const index = state.routes.findIndex(

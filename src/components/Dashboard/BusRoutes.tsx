@@ -2,7 +2,7 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import back from "../../assets/Icons/back.svg";
 import { useState, useEffect } from "react";
-import RoutesTable from "../RoutesTable";
+// import RoutesTable from "../RoutesTable";
 import { addNewBusRoutes, editBusRoutes, fetchBusesRoutes, deleteBusRoutes } from "@/services/busesRoutes";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,6 +14,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import search from "../../assets/Icons/search.svg";
 import filter from "../../assets/Icons/filter.svg";
+import Table from "../Table";
 
 const columns = [
   "Route Name",
@@ -111,6 +112,7 @@ export default function BusRoutes() {
     fetchBusesRoutes()
       .then((res) => dispatch(setBusRoutes({ routes: res.data.data.data })))
       .catch((err) => console.log(err));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -175,9 +177,10 @@ export default function BusRoutes() {
                   setDestination(e.target.value)
                 }
               />
-              <Button type="submit" onClick={handleSubmit}>
-                Save
-              </Button>
+            </div>
+            <Button type="submit" onClick={handleSubmit}>
+              Save
+            </Button>
           </form>
         </div>
       ) : (
@@ -217,7 +220,7 @@ export default function BusRoutes() {
           {loading ? (
             <Skeleton count={5} />
           ) : (
-            <RoutesTable
+            <Table
               columns={columns}
               data={routes}
               rowsPerPage={9}

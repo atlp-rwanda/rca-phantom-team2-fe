@@ -32,7 +32,7 @@ const Table = ({ columns, data, rowsPerPage, type, handleAction }: any) => {
         </thead>
         <tbody className="text-gunmetal font-medium">
           {slice &&
-            slice.map((el: Bus, index: number) => (
+            slice.map((el: any, index: number) => (
               <tr className="cursor-auto even:bg-gray-50 text-sm" key={index}>
                 <td className="px-3 py-4">
                   <input
@@ -49,6 +49,12 @@ const Table = ({ columns, data, rowsPerPage, type, handleAction }: any) => {
                     <td className="px-3 py-4">{el.model}</td>
                     <td className="px-3 py-4">{el.numOfSeats}</td>
                     <td className="px-3 py-4">{el.availbleSeats}</td>
+                  </>
+                ) : type === "busesRoutes" ? (
+                  <>
+                    <td className="px-3 py-4">{el.name}</td>
+                    <td className="px-3 py-4">{el.origin}</td>
+                    <td className="px-3 py-4">{el.destination}</td>
                   </>
                 ) : (
                   <td>Nothin..</td>
