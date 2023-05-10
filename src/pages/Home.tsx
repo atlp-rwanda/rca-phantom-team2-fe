@@ -8,6 +8,8 @@ export default function Home() {
   return (
     <div className="lg:px-10 px-5 pb-10 pt-5 relative font-poppins h-screen overflow-y-scroll overflow-x-hidden">
       <Navbar />
+      {/* rome-ignore lint/a11y/useAltText: <explanation> */}
+      {/* rome-ignore lint/a11y/useAltText: <explanation> */}
       <img src={shapes} className="absolute top-0 right-0 w-28 -z-10" />
       <div className="flex flex-wrap lg:mt-24 mt-20 w-full">
         <div className="lg:w-1/2 flex flex-col lg:justify-normal justify-center items-center lg:items-start">
@@ -39,8 +41,8 @@ export default function Home() {
             </div>
           </Link>
         </div>
-        <div className="lg:w-1/2 w-full relative lg:flex md:h-auto h-56 flex justify-center items-center mt-14 lg:mt-0">
-          <div className="lg:w-3/4 w-3/5 border-2 border-gray-300 rounded-2xl h-full"></div>
+        <div className="lg:w-1/2 w-full relative lg:flex md:h-auto h-56 flex justify- n items-center mt-14 lg:mt-0">
+          <div className="lg:w-3/4 w-3/5 border-2 border-gray-300 r n-2xl h-full"></div>
           <img
             src={busInside}
             alt="busInside"
