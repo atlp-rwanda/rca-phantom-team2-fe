@@ -9,6 +9,7 @@ import ResetPassword from "./pages/ResetPassword";
 import RegisterDriver from "./pages/RegisterDriver";
 import { Toaster } from "react-hot-toast";
 import { store } from "@/store";
+import Sidebar from "./layouts/sidebar";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/drivers/new" element={<RegisterDriver />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/dashboard" element={<Sidebar />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
