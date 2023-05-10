@@ -9,8 +9,6 @@ export const login = createAsyncThunk(
       const response = await axios.post(`${config.BASE_URL}/users/signin`, payload);
       const  token  = response.data.data.accessToken;
       localStorage.setItem('token', token);
-      console.log(response);
-      console.log(response.data.data.accessToken);
       return token;
     // rome-ignore lint/suspicious/noExplicitAny: <explanation>
 }  catch (error: any) {
@@ -26,7 +24,6 @@ export const logout = async () => {
       // });
       sessionStorage.clear();
       localStorage.removeItem('token');
-      console.log('Logged out successfully!');
     } catch (error) {
       console.error(error);
     }

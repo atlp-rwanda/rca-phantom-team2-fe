@@ -13,7 +13,7 @@ export default function MainDash({ children }: any) {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (!localStorage.getItem("userToken")) {
+    if (!localStorage.getItem("token")) {
       navigate("/signin");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

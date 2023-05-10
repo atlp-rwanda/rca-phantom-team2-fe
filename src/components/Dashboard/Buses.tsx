@@ -243,7 +243,7 @@ export default function Buses() {
           <div className="font-bold text-dark-green text-xl">Buses</div>
           <div className="mb-14 mt-3 flex justify-between items-center">
             <div className="flex items-center">
-              <div className="font-medium text-sm">Passengers</div>
+              <div className="font-medium text-sm">Buses</div>
               <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
                 {buses.length}
               </div>

@@ -37,7 +37,6 @@ export default function Navbar() {
         <a href="/">Home</a>
         <a href="">Schedule</a>
         <a href="">Contact Us</a>
-        {/*  */}
         <Link to="/signin">
         <div className="bg-gray-200 px-5 py-2 text-xs rounded">LOGIN</div></Link>
       </div>

@@ -11,7 +11,7 @@ const defaultOptions = {
 const instance = axios.create(defaultOptions);
 
 instance.interceptors.request.use(function(config) {
-  const token = localStorage.getItem("userToken");
+  const token = localStorage.getItem("token");
   config.headers.Authorization = token ? `Bearer ${token}` : "";
   return config;
 });
