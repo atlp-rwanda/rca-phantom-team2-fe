@@ -16,11 +16,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/counter" element={<Counter />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
-          <Route path="/registerDriver" element={<RegisterDriver />} />
+          <Route path="/drivers/new" element={<RegisterDriver />} />
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/signin" element={<SignIn />} />
         </Routes>
       </BrowserRouter>
     </Provider>
