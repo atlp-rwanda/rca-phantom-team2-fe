@@ -3,12 +3,14 @@ import bell from "../../assets/Icons/bell.svg";
 import search from "../../assets/Icons/search.svg";
 import menu from "../../assets/Icons/menu.svg";
 import { logout } from "@/store/authApi";
+import { useNavigate } from "react-router-dom";
 
 export default function Topbar({ toggleSidebar }: any) {
   const toggleTopMenu = () => {
     const topMenu = document.getElementById("topMenu");
     topMenu?.classList.toggle("hidden");
   };
+  const navigate = useNavigate();
   return (
     <div className="flex justify-between w-full items-center mb-14">
       <div className="relative md:w-2/5 w-3/5 flex items-center space-x-4">
@@ -52,7 +54,10 @@ export default function Topbar({ toggleSidebar }: any) {
           </div>
           <div
             className="pl-4 pr-6 py-2 cursor-pointer hover:bg-slate-50"
-            onClick={() => logout()}
+            onClick={() => {
+              logout();
+              navigate("/");
+            }}
           >
             Log out
           </div>
