@@ -12,12 +12,12 @@ export default function MainDash({ children }: any) {
   };
   const navigate = useNavigate();
 
-  // React.useEffect(() => {
-  //   if (!localStorage.getItem("userToken")) {
-  //     navigate("/signin");
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  React.useEffect(() => {
+    if (!localStorage.getItem("userToken")) {
+      navigate("/signin");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="flex font-inter h-screen relative">
       <Sidebar />
