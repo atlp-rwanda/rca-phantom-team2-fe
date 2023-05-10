@@ -245,7 +245,7 @@ export default function Buses() {
             <div className="flex items-center">
               <div className="font-medium text-sm">Passengers</div>
               <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
-                31
+                {buses.length}
               </div>
             </div>
             <div className="flex w-3/12">

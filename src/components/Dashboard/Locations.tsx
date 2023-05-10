@@ -189,7 +189,7 @@ export default function Locations() {
             <div className="flex items-center">
               <div className="font-medium text-sm">Locations</div>
               <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
-                2
+                {locations.length}
               </div>
             </div>
             <div className="flex w-3/12">

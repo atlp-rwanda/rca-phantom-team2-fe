@@ -49,7 +49,6 @@ export default function BusRoutes() {
 
   const dispatch = useDispatch();
   const { routes, loading } = useSelector((state: RootState) => state.route);
-  const { locations } = useSelector((state: RootState) => state.location)
 
   const handleAction = (type: string, obj: BusRoute) => {
     if (type === "edit") {
@@ -206,7 +205,7 @@ export default function BusRoutes() {
             <div className="flex items-center">
               <div className="font-medium text-sm">Routes</div>
               <div className="bg-green-800 rounded-full px-2 py-0.5 text-white text-xs ml-5">
-                2
+                {routes.length}
               </div>
             </div>
             <div className="flex w-3/12">
