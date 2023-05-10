@@ -4,9 +4,11 @@ import back from "../../assets/Icons/back.svg";
 import { useState, useEffect } from "react";
 // import RoutesTable from "../RoutesTable";
 import { addNewBusRoutes, editBusRoutes, fetchBusesRoutes, deleteBusRoutes } from "@/services/busesRoutes";
+import { fetchLocations } from "@/services/locations";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addBusRoute, removeBusRoute, setBusRoutes, setLoading, updateBusRoute } from "@/store/reducers/busRoutes";
+import { setLocations } from "@/store/reducers/location";
 
 
 import { RootState } from "@/store";
@@ -47,6 +49,7 @@ export default function BusRoutes() {
 
   const dispatch = useDispatch();
   const { routes, loading } = useSelector((state: RootState) => state.route);
+  const { locations } = useSelector((state: RootState) => state.location)
 
   const handleAction = (type: string, obj: BusRoute) => {
     if (type === "edit") {
@@ -109,9 +112,22 @@ export default function BusRoutes() {
   };
 
   useEffect(() => {
-    fetchBusesRoutes()
-      .then((res) => dispatch(setBusRoutes({ routes: res.data.data.data })))
-      .catch((err) => console.log(err));
+    fetchLocations()
+    .then((res1) => {
+      fetchBusesRoutes()
+        .then((res) => {
+          const _routes = res.data.data.data.map((r: BusRoute) => {
+            return {
+              ...r,
+              origin: res1.data.data.data.find((x: any) => x.id === r.origin).name,
+              destination: res1.data.data.data.find((x: any) => x.id === r.destination).name
+            }
+          })
+          dispatch(setBusRoutes({ routes: _routes}))
+          dispatch(setLocations({ locations: res1.data.data.data}))
+        })
+    })
+    .catch((err) => console.log(err));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -32,6 +32,12 @@ export default function Sidebar() {
             <div className="ml-5">Buses</div>
           </div>
         </NavLink>
+        <NavLink to="/dashboard/routes">
+          <div className="flex py-2 cursor-pointer px-6 items-center">
+            <img src={location} alt="Icon" />
+            <div className="ml-6">Routes</div>
+          </div>
+        </NavLink>
       </div>
     </div>
   );
