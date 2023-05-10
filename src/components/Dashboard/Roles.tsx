@@ -21,7 +21,6 @@ import {
   setLoading,
   updateRole,
 } from "@/store/reducers/roles";
-import SelectSearch, { SelectSearchOption } from "react-select-search";
 
 const columns = ["Role names", "Description"];
 

@@ -101,6 +101,7 @@ export default function Permissions() {
     setModelName("");
     setOperations("");
     setShow(0);
+    setActiveObj(undefined);
   };
 
   useEffect(() => {
